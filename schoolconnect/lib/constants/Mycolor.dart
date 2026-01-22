@@ -65,6 +65,8 @@ class MyColor {
   static const color737373 = Color(0xff737373);
   static const colorEEF4FF= Color(0xffEEF4FF);
   static const colorD7E3FC= Color(0xffD7E3FC);
+  static const color021034 = Color(0xff021034);
+  static const color377DFF = Color(0xff0377DFF);
 
 }
 
