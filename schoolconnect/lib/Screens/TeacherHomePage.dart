@@ -365,7 +365,7 @@ class TeacherHomePage extends StatelessWidget {
 
   Widget _assignedSubjectItem() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
           Expanded(
@@ -377,10 +377,10 @@ class TeacherHomePage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
-                        vertical: 4,
+                        vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEFF4FF),
+                        color: MyColor.colorF5F9FF,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: MyColor.colorD7E3FC)
                       ),
@@ -403,14 +403,18 @@ class TeacherHomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 13),
                 Row(
-                  children: const [
-                    Icon(Icons.person_outline, size: 16, color: Colors.grey),
+                  children: [
+                    SvgPicture.asset(AssetsImages.doubleperson, height: 20),
                     SizedBox(width: 4),
                     Text(
                       "28 Students",
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                      style: TextStyle(
+                        color: MyColor.color737373,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ],
                 ),
