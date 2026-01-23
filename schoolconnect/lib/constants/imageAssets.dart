@@ -7,6 +7,7 @@ class AssetsImages {
   static const remainclock = "assets/Images/remainclock.svg";
   static const editpage = "assets/Images/editpage.svg";
   static const clock = "assets/Images/clock.svg";
+  static const plus = "assets/Images/plus.svg";
 
 
 }

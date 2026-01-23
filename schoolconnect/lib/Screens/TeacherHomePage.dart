@@ -38,7 +38,7 @@ class TeacherHomePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 4),
-                        const Text.rich(
+                        Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
@@ -205,9 +205,11 @@ class TeacherHomePage extends StatelessWidget {
               _classTile(),
               _classTile(),
               _classTile(),
+      
             ],
           ),
         ),
+      
       ),
     );
   }
@@ -218,67 +220,86 @@ class TeacherHomePage extends StatelessWidget {
 
   Widget _myClassCard() {
     return Container(
-      padding: const EdgeInsets.all(16),
       decoration: _cardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// Header
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "My Class: 10-A",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    "Class Teacher Responsibilities",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ],
-              ),
-              Column(
-                children: const [
-                  Text(
-                    "32",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Total Students",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 14),
-
-          /// Warning
-          Row(
-            children: const [
-              Icon(Icons.error_outline, size: 18, color: Colors.red),
-              SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  "Morning attendance not yet submitted",
-                  style: TextStyle(fontSize: 13, color: Colors.grey),
+          // Header with horizontal padding
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "My Class: 10-A",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      "Class Teacher Responsibilities",
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: const [
+                    Text(
+                      "32",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "Total Students",
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          hSized20,
+          // Full-width divider (no horizontal padding)
+          const Divider(color: MyColor.colorD7E3FC, thickness: 1, height: 1),
 
-          const SizedBox(height: 14),
+          // Rest of content with horizontal padding
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+            child: Column(
+              children: [
+                /// Warning
+                Row(
+                  children: const [
+                    Icon(Icons.error_outline, size: 18, color: Colors.red),
+                    SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        "Morning attendance not yet submitted",
+                        style: TextStyle(fontSize: 13, color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
 
-          _primaryButton("➕  Take Attendance", svgAsset: AssetsImages.person),
-          const SizedBox(height: 10),
-          _primaryButton(
-            "  Attendance History",
-            svgAsset: AssetsImages.calendar,
+                const SizedBox(height: 14),
+
+                _primaryButton("Take Attendance", svgAsset: AssetsImages.plus),
+                const SizedBox(height: 10),
+                _primaryButton(
+                  "  Attendance History",
+                  svgAsset: AssetsImages.clock,
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -489,14 +510,15 @@ class TeacherHomePage extends StatelessWidget {
       height: 44,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF0A1A3A),
+          backgroundColor: MyColor.color021034,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
         onPressed: () {},
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (svgAsset != null) ...[
               SvgPicture.asset(
@@ -507,8 +529,13 @@ class TeacherHomePage extends StatelessWidget {
               ),
               const SizedBox(width: 8),
             ],
-            Expanded(
-              child: Text(text, style: const TextStyle(color: Colors.white)),
+            Flexible(
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),
