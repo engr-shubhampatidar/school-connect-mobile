@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schoolconnect/Screens/TakeAttendanceScreen.dart';
 import 'package:schoolconnect/Screens/AttendanceHistoryScreen.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
-import 'package:schoolconnect/constants/imageAssets.dart';
 import 'package:schoolconnect/constants/sizesbox.dart';
+import 'package:schoolconnect/export.dart';
+import 'package:schoolconnect/constants/strings.dart';
 
 class TeacherHomePage extends StatefulWidget {
   const TeacherHomePage({super.key});
@@ -63,7 +63,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                         children: [
                           const SizedBox(height: 0),
                           Text(
-                            "Welcome back, Sarah ",
+                            AppStrings.welcomeBack,
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -179,7 +179,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: const [
                                 Text(
-                                  "Assigned Subjects",
+                                  AppStrings.assignedSubjectsTitle,
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
@@ -188,7 +188,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  "Manage your teaching assignment and mark entry",
+                                  AppStrings.studentListSubtitle,
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 12,
@@ -337,7 +337,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "Class Teacher Responsibilities",
+                      AppStrings.classResponsibilities,
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ],
@@ -354,7 +354,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                       ),
                     ),
                     Text(
-                      "Total Students",
+                      AppStrings.totalStudentsLabel,
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ],
@@ -379,7 +379,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                       Icon(Icons.error_outline, size: 18, color: Colors.red),
                       SizedBox(width: 6),
                       Text(
-                        "Morning attendance not yet submitted",
+                        AppStrings.morningAttendanceWarning,
                         style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                     ],
@@ -388,10 +388,13 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
 
                 const SizedBox(height: 14),
 
-                _primaryButton("Take Attendance", svgAsset: AssetsImages.plus),
+                _primaryButton(
+                  AppStrings.takeAttendance,
+                  svgAsset: AssetsImages.plus,
+                ),
                 const SizedBox(height: 10),
                 _primaryButton(
-                  "Attendance History",
+                  AppStrings.attendanceHistory,
                   svgAsset: AssetsImages.clock,
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (_) => const AttendanceHistoryScreen()));
@@ -424,10 +427,10 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                       decoration: BoxDecoration(
                         color: MyColor.colorF5F9FF,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: MyColor.colorD7E3FC)
+                        border: Border.all(color: MyColor.colorD7E3FC),
                       ),
                       child: const Text(
-                        "10-A",
+                        AppStrings.assignedClassLabel,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -437,7 +440,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                     ),
                     const SizedBox(width: 8),
                     const Text(
-                      "Mathematics",
+                      AppStrings.subjectMathematics,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -451,7 +454,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                     SvgPicture.asset(AssetsImages.doubleperson, height: 20),
                     SizedBox(width: 4),
                     Text(
-                      "28 Students",
+                      AppStrings.studentsCount,
                       style: TextStyle(
                         color: MyColor.color737373,
                         fontSize: 12,
@@ -473,7 +476,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
             ),
             onPressed: () {},
             child: Text(
-              "View Students",
+              AppStrings.viewStudents,
               style: TextStyle(color: MyColor.black),
             ),
           )
@@ -526,7 +529,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
             child: Text(
               footer,
               style: TextStyle(
-                color: title == "Pending marks"
+                color: title == AppStrings.pendingMarksTitle
                     ? MyColor.color16A34A
                     : MyColor.color737373,
                 overflow: TextOverflow.ellipsis,

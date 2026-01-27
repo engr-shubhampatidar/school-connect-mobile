@@ -1,7 +1,11 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:schoolconnect/constants/Mycolor.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'AttendanceHistoryScreen.dart';
+import 'package:schoolconnect/export.dart';
+import 'package:schoolconnect/constants/strings.dart';
 
 enum AttendanceStatus { none, present, absent, leave }
 
@@ -39,7 +43,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
-      barrierLabel: 'Attendance Saved',
+      barrierLabel: AppStrings.attendanceSavedBarrier,
       barrierColor: Colors.black.withOpacity(0.4),
       transitionDuration: const Duration(milliseconds: 220),
       pageBuilder: (context, animation, secondaryAnimation) {
@@ -89,7 +93,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           ),
                           const SizedBox(height: 18),
                           const Text(
-                            'Attendance Saved Successfully',
+                            AppStrings.attendanceSavedTitle,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 18,
@@ -98,7 +102,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            'All student attendance for today has been recorded.\nYou can review or update entries before the day ends.',
+                            AppStrings.attendanceSavedMessage,
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.grey, fontSize: 13),
                           ),
@@ -151,7 +155,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
         ),
         centerTitle: true,
         title: const Text(
-          'Take Attendance',
+          AppStrings.takeAttendance,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
         ),
         actions: [
@@ -176,11 +180,12 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
           children: [
             // Class info card
             Container(
+              height: 89,
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFF3B6EF6), width: 1.2),
+                border: Border.all(color: MyColor.colorD7E3FC, width: 1.2),
                 boxShadow: [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.04),
@@ -191,12 +196,13 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        'Class 10 - Section A',
+                        AppStrings.classTitle,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -204,28 +210,26 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                       ),
                       SizedBox(height: 6),
                       Text(
-                        'Monday, Oct 23',
+                        AppStrings.classDate,
                         style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
                     ],
                   ),
                   Container(
+                    height: 24,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
-                      vertical: 6,
+                      vertical: 0,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: const Color(0xFF3B6EF6),
-                        width: 1,
-                      ),
+                      border: Border.all(color: MyColor.colorD7E3FC, width: 1),
                     ),
                     child: const Text(
-                      'Science',
+                      AppStrings.subjectScience,
                       style: TextStyle(
-                        color: Color(0xFF3B6EF6),
+                        color: MyColor.myblack,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -248,38 +252,44 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                 child: Column(
                   children: [
                     // header
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Text(
-                              'Student List',
+                              AppStrings.studentListTitle,
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
+                                fontFamily: 'Roboto',
                               ),
                             ),
-                            SizedBox(height: 2),
-                            Text(
-                              'Mark attendance for 32 students',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppStrings.rollNo,
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Icon(LucideIcons.filter, color: Colors.grey),
+                              ],
                             ),
                           ],
                         ),
-                        Row(
-                          children: const [
-                            Text(
-                              'Roll No.',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            SizedBox(width: 8),
-                            Icon(Icons.filter_list, color: Colors.grey),
-                          ],
+                        SizedBox(height: 2),
+                        Text(
+                          AppStrings.studentListSubtitle,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),
@@ -297,7 +307,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           return Container(
                             padding: const EdgeInsets.symmetric(
                               vertical: 8,
-                              horizontal: 12,
+                              horizontal: 5,
                             ),
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -305,12 +315,13 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                             ),
                             child: Row(
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   radius: 22,
                                   backgroundColor: Color(0xFFEAF1FF),
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Color(0xFF3B6EF6),
+                                  child: Image.asset(
+                                    AssetsImages.loginperson,
+                                    width: 49,
+                                    height: 47,
                                   ),
                                 ),
                                 const SizedBox(width: 12),
@@ -322,15 +333,18 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                       Text(
                                         'Rajbir Bhangi',
                                         style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: MyColor.myblack
                                         ),
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        'Roll No. 0${index + 1}',
+                                        '${AppStrings.rollNo} 0${index + 1}',
                                         style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 12,
+                                          fontWeight: FontWeight.w400
                                         ),
                                       ),
                                     ],
@@ -341,7 +355,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                 Container(
                                   height: 44,
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
+                                    horizontal: 8,
                                   ),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFEFF4FF),
@@ -377,7 +391,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                                   status ==
                                                       AttendanceStatus.present
                                                   ? const Color(0xFF16A34A)
-                                                  : const Color(0xFFD7E3FC),
+                                                  : MyColor.transparent
                                             ),
                                           ),
                                           child: Icon(
@@ -416,7 +430,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                                   status ==
                                                       AttendanceStatus.absent
                                                   ? const Color(0xFFE30B5C)
-                                                  : const Color(0xFFD7E3FC),
+                                                  : MyColor.transparent,
                                             ),
                                           ),
                                           child: Icon(
@@ -454,7 +468,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                                   status ==
                                                       AttendanceStatus.leave
                                                   ? const Color(0xFFF59E0B)
-                                                  : const Color(0xFFD7E3FC),
+                                                  : MyColor.transparent,
                                             ),
                                           ),
                                           child: Icon(
@@ -507,7 +521,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'Present: ${_presentCount.toString().padLeft(2, '0')}',
+                            '${AppStrings.present}: ${_presentCount.toString().padLeft(2, '0')}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
@@ -525,7 +539,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'Absent: ${_absentCount.toString().padLeft(2, '0')}',
+                            '${AppStrings.absent}: ${_absentCount.toString().padLeft(2, '0')}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
@@ -543,7 +557,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'Leave: ${_leaveCount.toString().padLeft(2, '0')}',
+                            '${AppStrings.leave}: ${_leaveCount.toString().padLeft(2, '0')}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
@@ -572,7 +586,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text('Cancel'),
+                    child: const Text(AppStrings.cancel),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -588,7 +602,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                       ),
                     ),
                     child: const Text(
-                      'Edit & Save Changes',
+                      AppStrings.editSave,
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -599,11 +613,11 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+                children: const [
                 Icon(Icons.info_outline, size: 16, color: Colors.grey),
                 SizedBox(width: 6),
                 Text(
-                  'Attendance can be edited by today only',
+                  AppStrings.editableNote,
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
               ],
