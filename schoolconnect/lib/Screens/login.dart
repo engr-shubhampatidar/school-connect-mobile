@@ -49,117 +49,116 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-          Stack(
-            children: [
-              /// 🔴 Top Section
-              Container(
+            Stack(
+              children: [
+                /// 🔴 Top Section
+                Container(
                   height: size.height * 0.33,
-                width: size.width,
-                color: MyColor.ColorE83979,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.asset(AssetsImages.loginhero, fit: BoxFit.cover),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          /// Logo
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Row(
-                                children: [
-                                  Text(
-                                    "MAXUSE",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
+                  width: size.width,
+                  color: MyColor.ColorE83979,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(AssetsImages.loginhero, fit: BoxFit.cover),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            /// Logo
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "MAXUSE",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "CS",
-                                    style: TextStyle(
-                                      fontSize: 4,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
+                                    Text(
+                                      "CS",
+                                      style: TextStyle(
+                                        fontSize: 4,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                "INSTITUTE.",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
+                                Text(
+                                  "INSTITUTE.",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
 
-                          /// Heading
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Sign in to SchoolConnect",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
+                            /// Heading
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Sign in to SchoolConnect",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                "Secure access For Admin, Teachers and Student",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                                SizedBox(height: 4),
+                                Text(
+                                  "Secure access For Admin, Teachers and Student",
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-             
 
-              /// 🧍 Login Person Image (JUST NICHE)
-            ],
-          ),
-          hSized30,
+                /// 🧍 Login Person Image (JUST NICHE)
+              ],
+            ),
+            hSized30,
             Image.asset(
               AssetsImages.loginperson,
               width: avatarSize,
               height: avatarSize,
               fit: BoxFit.contain,
             ),
-          hSized10,
-          Text(
-            "Sign In Portal",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
+            hSized10,
+            Text(
+              "Sign In Portal",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          hSized10,
-          Text(
-            "School Management System",
-            style: TextStyle(
+            hSized10,
+            Text(
+              "School Management System",
+              style: TextStyle(
                 fontSize: 11,
-              color: MyColor.color737373,
-              fontWeight: FontWeight.w600,
+                color: MyColor.color737373,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
             hSized20,
 
             Consumer<RoleProvider>(
@@ -480,11 +479,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                 headers: {'Content-Type': 'application/json'},
                                 body: jsonEncode(payload),
                               );
-                              debugPrint('Response status: ${response.statusCode}');
-                              debugPrint('Response body: ${response.body}');
-                              debugPrint('Response url: ${response.request?.url}');
+                              debugPrint(
+                                'Response status: ${response.statusCode}',
+                              );
+                              try {
+                                final parsed = jsonDecode(response.body);
+                                final pretty = const JsonEncoder.withIndent(
+                                  '  ',
+                                ).convert(parsed);
+                                debugPrint('Response body (pretty):\n$pretty');
+                              } catch (_) {
+                                debugPrint(
+                                  'Response body (raw): ${response.body}',
+                                );
+                              }
+                              debugPrint(
+                                'Response url: ${response.request?.url}',
+                              );
 
-                              if (response.statusCode >= 200 && response.statusCode < 300) {
+                              if (response.statusCode >= 200 &&
+                                  response.statusCode < 300) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('Login successful'),
@@ -495,26 +509,54 @@ class _LoginScreenState extends State<LoginScreen> {
                                 try {
                                   final bodyJson = jsonDecode(response.body);
                                   String? token;
+
                                   if (bodyJson is Map) {
-                                    token = bodyJson['token']?.toString() ?? bodyJson['accessToken']?.toString();
-                                    if (token == null && bodyJson['data'] is Map) {
-                                      token = bodyJson['data']['token']?.toString() ?? bodyJson['data']['accessToken']?.toString();
+                                    token =
+                                        bodyJson['token']?.toString() ??
+                                        bodyJson['accessToken']?.toString() ??
+                                        bodyJson['access_token']?.toString();
+
+                                    if (token == null &&
+                                        bodyJson['data'] is Map) {
+                                      final data = bodyJson['data'] as Map;
+                                      token =
+                                          data['token']?.toString() ??
+                                          data['accessToken']?.toString() ??
+                                          data['access_token']?.toString();
                                     }
                                   }
+
                                   if (token != null) {
-                                    final prefs = await SharedPreferences.getInstance();
+                                    final prefs =
+                                        await SharedPreferences.getInstance();
                                     await prefs.setString('auth_token', token);
-                                    await prefs.setString('user_role', role.toString());
-                                    debugPrint('Saved auth_token: ${token.replaceAll(RegExp(r'.(?!.{4})'), '*')}');
+                                    await prefs.setString(
+                                      'access_token',
+                                      token,
+                                    );
+                                    await prefs.setString(
+                                      'user_role',
+                                      role.toString(),
+                                    );
+                                    debugPrint(
+                                      'Saved auth_token: ${token.replaceAll(RegExp(r".(?!.{4})"), "*")}',
+                                    );
+                                    debugPrint(
+                                      'Saved access_token key as well',
+                                    );
                                   } else {
-                                    debugPrint('No token found in response');
+                                    debugPrint(
+                                      'No token found in response. Response body: ${response.body}',
+                                    );
                                   }
                                 } catch (e) {
                                   debugPrint('Token parsing error: $e');
                                 }
 
                                 if (role == UserRole.teacher) {
-                                  Navigator.of(context).pushReplacementNamed('/dashboard');
+                                  Navigator.of(
+                                    context,
+                                  ).pushReplacementNamed('/dashboard');
                                 }
                                 // token persisted (if present)
                               } else {
@@ -618,7 +660,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        hSized10
+                        hSized10,
                       ],
                     ),
                   ),

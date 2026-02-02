@@ -1,5 +1,16 @@
 export 'package:flutter/material.dart';
 export 'package:schoolconnect/provider/role_provider.dart';
 export 'package:schoolconnect/provider/app_provider.dart';
+export 'package:schoolconnect/provider/attendance_provider.dart';
+export 'package:schoolconnect/provider/teacher_provider.dart';
 export 'package:provider/provider.dart';
 export 'package:schoolconnect/constants/imageAssets.dart';
+export 'package:schoolconnect/constants/Mycolor.dart';
+export 'package:schoolconnect/constants/strings.dart';
+export 'package:flutter/services.dart';
+export 'package:flutter_svg/flutter_svg.dart';
+export 'package:schoolconnect/Screens/TakeAttendanceScreen.dart';
+export 'package:schoolconnect/Screens/AttendanceHistoryScreen.dart';
+export 'package:schoolconnect/constants/sizesbox.dart';
+export 'package:schoolconnect/export.dart';
+export 'package:lucide_icons/lucide_icons.dart';

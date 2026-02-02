@@ -63,12 +63,15 @@ class MyColor {
 
   //<>-----------my color------------
   static const color737373 = Color(0xff737373);
-  static const colorEEF4FF= Color(0xffEEF4FF);
-  static const colorD7E3FC= Color(0xffD7E3FC);
+  static const colorEEF4FF = Color(0xffEEF4FF);
+  static const colorD7E3FC = Color(0xffD7E3FC);
   static const color021034 = Color(0xff021034);
   static const color377DFF = Color(0xff0377DFF);
   static const color16A34A = Color(0xff16A34A);
   static const colorF5F9FF = Color(0xffF5F9FF);
+  static const color64748B = Color(0xff64748B);
+  static const colorE11D48 = Color(0xffE11D48);
+  static const colorF59E0B = Color(0xffF59E0B);
 }
 
 class AppImages {
