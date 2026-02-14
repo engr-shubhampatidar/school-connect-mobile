@@ -38,12 +38,16 @@ class MyClassScreen extends StatelessWidget {
               /// Student List Header
               const Text(
                 "Student List",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Roboto',
+                ),
               ),
               const SizedBox(height: 4),
               const Text(
                 "Manage Student Profile and status",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 12),
 
@@ -191,18 +195,6 @@ class MyClassScreen extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          // _primaryButton(
-          //       AppStrings.attendanceHistory,
-          //       svgAsset: AssetsImages.clock,
-          //       onPressed: () {
-          //         Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //             builder: (_) => const AttendanceHistoryScreen(),
-          //           ),
-          //         );
-          //       },
-          //     ),
           _primaryButtonskyblue(
             "Download Monthly Report",
             svgAsset: AssetsImages.download,
@@ -251,15 +243,14 @@ class MyClassScreen extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "Search by name...",
-              prefixIcon: const Icon(Icons.search),
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
+          child: Container(
+            decoration: _cardDecoration(),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Search by name...",
+                prefixIcon: const Icon(Icons.search),
+                border: InputBorder.none, // remove default border
+                contentPadding: const EdgeInsets.symmetric(vertical: 14),
               ),
             ),
           ),
@@ -267,11 +258,14 @@ class MyClassScreen extends StatelessWidget {
         const SizedBox(width: 8),
         Container(
           padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+          decoration: _cardDecoration(), // same decoration applied
+          child: Row(
+            children: [
+              Icon(LucideIcons.filter, color: Colors.grey, size: 15),
+              wSized10,
+              Text("Filter"),
+            ],
           ),
-          child: const Icon(Icons.filter_list),
         ),
       ],
     );
@@ -285,13 +279,13 @@ class MyClassScreen extends StatelessWidget {
       child: Row(
         children: [
           const CircleAvatar(
-            radius: 22,
+            radius: 28,
             backgroundImage: NetworkImage(
               "https://randomuser.me/api/portraits/men/1.jpg",
             ),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -301,17 +295,64 @@ class MyClassScreen extends StatelessWidget {
                 ),
                 Text(
                   "RajbirBhangi@gmail.com",
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                  style: TextStyle(fontSize: 12, color: MyColor.color94A3B8),
                 ),
-                SizedBox(height: 4),
-                Text(
-                  "Male • Active",
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                SizedBox(height: 7),
+                Row(
+                  children: [
+                    Text(
+                      "Male",
+
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                    wSized5,
+                    CircleAvatar(
+                      radius: 3,
+                      backgroundColor: MyColor.color94A3B8,
+                    ),
+                    wSized5,
+
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: MyColor.colorF1F5F9, // #475569
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Text(
+                        "Active",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: MyColor
+                              .color475569, // white text better rahega dark bg par
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-          OutlinedButton(onPressed: () {}, child: const Text("View")),
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              side: BorderSide(
+                color: MyColor.colorD7E3FC, // same as card border
+                width: 1.2,
+              ),
+            ),
+            onPressed: () {},
+            child: const Text(
+              "View",
+              style: TextStyle(
+                color: Colors.black, // text color change if needed
+              ),
+            ),
+          ),
         ],
       ),
     );
