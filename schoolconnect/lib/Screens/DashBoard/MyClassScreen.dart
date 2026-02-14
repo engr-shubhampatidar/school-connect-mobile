@@ -187,9 +187,21 @@ class MyClassScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: const [
-              _StatusItem(count: "30", label: "Present", color: Colors.green),
-              _StatusItem(count: "02", label: "Absent", color: Colors.red),
-              _StatusItem(count: "02", label: "Leave", color: Colors.orange),
+              _StatusItem(
+                count: "30",
+                label: "Present",
+                color: MyColor.color16A34A,
+              ),
+              _StatusItem(
+                count: "02",
+                label: "Absent",
+                color: MyColor.colorE11D48,
+              ),
+              _StatusItem(
+                count: "02",
+                label: "Leave",
+                color: MyColor.colorF59E0B,
+              ),
             ],
           ),
 
@@ -244,6 +256,7 @@ class MyClassScreen extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
+            height: 50,
             decoration: _cardDecoration(),
             child: TextField(
               decoration: InputDecoration(
@@ -257,6 +270,7 @@ class MyClassScreen extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Container(
+          height: 50,
           padding: const EdgeInsets.all(12),
           decoration: _cardDecoration(), // same decoration applied
           child: Row(
