@@ -52,6 +52,16 @@ class AppStrings {
   static const String morningAttendanceWarning =
       'Morning attendance not yet submitted';
 
+  // MyClass screen strings
+  static const String myClassTitle = 'My Class';
+  static const String manageStudentProfile =
+      'Manage Student Profile and status';
+  static const String viewMoreStudents = 'View more students';
+  static const String searchByNameHint = 'Search by name...';
+  static const String filter = 'Filter';
+  static const String view = 'View';
+  static const String active = 'Active';
+
   static const String attendanceHistory = 'Attendance History';
 
   static const String todayClassesTitle = 'Today’s Classes';

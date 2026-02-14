@@ -37,7 +37,7 @@ class MyClassScreen extends StatelessWidget {
 
               /// Student List Header
               const Text(
-                "Student List",
+                AppStrings.studentListTitle,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -46,7 +46,7 @@ class MyClassScreen extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               const Text(
-                "Manage Student Profile and status",
+                AppStrings.manageStudentProfile,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 12),
@@ -65,7 +65,7 @@ class MyClassScreen extends StatelessWidget {
 
               const Center(
                 child: Text(
-                  "View more students",
+                  AppStrings.viewMoreStudents,
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.w500,
@@ -127,7 +127,7 @@ class MyClassScreen extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const Text(
-            "Total Students",
+            AppStrings.totalStudentsLabel,
             style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
         ],
@@ -260,7 +260,7 @@ class MyClassScreen extends StatelessWidget {
             decoration: _cardDecoration(),
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Search by name...",
+                hintText: AppStrings.searchByNameHint,
                 prefixIcon: const Icon(Icons.search),
                 border: InputBorder.none, // remove default border
                 contentPadding: const EdgeInsets.symmetric(vertical: 14),
@@ -277,7 +277,7 @@ class MyClassScreen extends StatelessWidget {
             children: [
               Icon(LucideIcons.filter, color: Colors.grey, size: 15),
               wSized10,
-              Text("Filter"),
+              Text(AppStrings.filter),
             ],
           ),
         ),
@@ -336,7 +336,7 @@ class MyClassScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Text(
-                        "Active",
+                        AppStrings.active,
                         style: TextStyle(
                           fontSize: 12,
                           color: MyColor
@@ -361,7 +361,7 @@ class MyClassScreen extends StatelessWidget {
             ),
             onPressed: () {},
             child: const Text(
-              "View",
+              AppStrings.view,
               style: TextStyle(
                 color: Colors.black, // text color change if needed
               ),
