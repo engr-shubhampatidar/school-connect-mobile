@@ -7,6 +7,34 @@ import 'package:schoolconnect/constants/strings.dart';
 
 class LeaveManagementScreen extends StatelessWidget {
   LeaveManagementScreen({super.key});
+
+  final List<Map<String, dynamic>> leaveRequests = [
+    {
+      "type": "Sick Leave",
+      "date": "Oct 12 - Oct 14",
+      "days": "3 Days Requested",
+      "status": "Approved",
+      "statusColor": const Color(0xFF1E7A3E),
+      "remarks": "Hope you feel better soon. Substituted by Mr. Wilson.",
+    },
+    {
+      "type": "Casual Leave",
+      "date": "Nov 02 - Nov 03",
+      "days": "2 Days Requested",
+      "status": "Pending",
+      "statusColor": const Color(0xFFF59E0B),
+      "remarks": "Awaiting principal approval.",
+    },
+    {
+      "type": "Medical Leave",
+      "date": "Nov 10",
+      "days": "1 Day Requested",
+      "status": "Rejected",
+      "statusColor": const Color(0xFFDC2626),
+      "remarks": "Insufficient documents provided.",
+    },
+  ];
+
   final List<Map<String, String>> studentRequests = [
     {
       "name": "Marcus Thompson",
@@ -203,15 +231,22 @@ class LeaveManagementScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 12),
+            ListView.builder(
+              itemCount: leaveRequests.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                final leave = leaveRequests[index];
 
-            _requestCard(
-              type: "Sick Leave",
-              date: "Oct 12 - Oct 14",
-              days: "3 Days Requested",
-              status: "Approved",
-              statusColor: const Color(0xFF1E7A3E),
-              remarks:
-                  "\"Hope you feel better soon. Substituted by Mr. Wilson.\"",
+                return _requestCard(
+                  type: leave["type"],
+                  date: leave["date"],
+                  days: leave["days"],
+                  status: leave["status"],
+                  statusColor: leave["statusColor"],
+                  remarks: leave["remarks"],
+                );
+              },
             ),
 
             const SizedBox(height: 12),
