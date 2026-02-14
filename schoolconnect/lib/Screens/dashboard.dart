@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schoolconnect/Screens/DashBoard/LeaveManagementScreen.dart';
 import 'package:schoolconnect/Screens/DashBoard/MyClassScreen.dart';
 import 'package:schoolconnect/Screens/MySubjectScreen.dart';
 import 'package:schoolconnect/Screens/TeacherHomePage.dart';
@@ -14,11 +15,12 @@ class TeacherBottomNav extends StatefulWidget {
 class _TeacherBottomNavState extends State<TeacherBottomNav> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    TeacherHomePage(),
-    MySubjectScreen(),
-    MyClassScreen(),
-    AssignmentScreen(),
+  final List<Widget> _screens = [
+    const TeacherHomePage(),
+    LeaveManagementScreen(),
+    // MySubjectScreen(),
+    const MyClassScreen(),
+    const AssignmentScreen(),
   ];
 
   @override
@@ -41,10 +43,16 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
         showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.menu_book_outlined),
+          //   label: "My Subject",
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_outlined),
-            label: "My Subject",
+            icon: Icon(Icons.event_note_outlined), // Better icon for Leave
+            activeIcon: Icon(Icons.event_note),
+            label: "Leave",
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.people_outline),
             label: "My Class",

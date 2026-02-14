@@ -125,12 +125,13 @@ class MyProfileScreen extends StatelessWidget {
               /// Footer Note
               Row(
                 children: const [
+                  wSized10,
                   Icon(Icons.info_outline, size: 16, color: Colors.grey),
-                  SizedBox(width: 8),
+                  hSized6,
                   Expanded(
                     child: Text(
                       "If any information is incorrect, please contact the school office for assistance.",
-                      style: TextStyle(fontSize: 11, color: Colors.grey),
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   ),
                 ],
