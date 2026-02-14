@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
+import 'package:schoolconnect/Screens/DashBoard/StudentProfileScreen.dart';
 import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/model.dart/teacherclass.dart';
 
@@ -337,7 +338,11 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
         backgroundColor: const Color(0xFFF4F7FC),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            size: 20,
+            color: Colors.black,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
@@ -565,13 +570,28 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                 ),
                                 child: Row(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 22,
-                                      backgroundColor: const Color(0xFFEAF1FF),
-                                      backgroundImage: s.photoUrl.isNotEmpty
-                                          ? NetworkImage(s.photoUrl)
-                                          : AssetImage(AssetsImages.loginperson)
-                                                as ImageProvider,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MyProfileScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 22,
+                                        backgroundColor: const Color(
+                                          0xFFEAF1FF,
+                                        ),
+                                        backgroundImage: s.photoUrl.isNotEmpty
+                                            ? NetworkImage(s.photoUrl)
+                                            : AssetImage(
+                                                    AssetsImages.loginperson,
+                                                  )
+                                                  as ImageProvider,
+                                      ),
                                     ),
                                     const SizedBox(width: 12),
                                     Expanded(
