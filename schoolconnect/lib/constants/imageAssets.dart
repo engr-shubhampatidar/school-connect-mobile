@@ -9,6 +9,5 @@ class AssetsImages {
   static const clock = "assets/Images/clock.svg";
   static const plus = "assets/Images/plus.svg";
   static const doubleperson = "assets/Images/doubleperson.svg";
-
-
+  static const download = "assets/Images/download.svg";
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schoolconnect/Screens/DashBoard/MyClassScreen.dart';
 import 'package:schoolconnect/Screens/MySubjectScreen.dart';
 import 'package:schoolconnect/Screens/TeacherHomePage.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
@@ -39,10 +40,7 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
         backgroundColor: MyColor.white,
         showUnselectedLabels: true,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book_outlined),
             label: "My Subject",

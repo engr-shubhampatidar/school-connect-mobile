@@ -9,15 +9,6 @@ class MySubjectScreen extends StatelessWidget {
   }
 }
 
-class MyClassScreen extends StatelessWidget {
-  const MyClassScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("My Class Screen"));
-  }
-}
-
 class AssignmentScreen extends StatelessWidget {
   const AssignmentScreen({super.key});
 

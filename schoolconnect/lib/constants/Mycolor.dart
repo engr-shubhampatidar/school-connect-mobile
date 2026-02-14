@@ -72,6 +72,7 @@ class MyColor {
   static const color64748B = Color(0xff64748B);
   static const colorE11D48 = Color(0xffE11D48);
   static const colorF59E0B = Color(0xffF59E0B);
+  static const color475569 = Color(0xff475569);
 }
 
 class AppImages {

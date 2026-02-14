@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/model.dart/attendanceclass.dart';
 
+import 'package:shadcn_ui/shadcn_ui.dart' hide LucideIcons;
+
 class AttendanceHistoryScreen extends StatefulWidget {
   const AttendanceHistoryScreen({super.key});
 
@@ -17,7 +19,10 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       debugPrint('AttendanceHistoryScreen: init - triggering fetchAttendance');
-      context.read<AttendanceProvider>().fetchAttendance();
+      context.read<AttendanceProvider>().fetchAttendance(
+        classId: "99565b63-e04e-41a7-869a-dc8c72a051f7",
+        date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+      );
     });
   }
 

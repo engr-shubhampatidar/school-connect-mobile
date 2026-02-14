@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/model.dart/teacherclass.dart';
 
-import 'package:schoolconnect/model.dart/attendanceclass.dart' as ac;
+import 'package:shadcn_ui/shadcn_ui.dart' hide LucideIcons;
 
 enum AttendanceStatus { none, present, absent, leave }
 
@@ -283,7 +283,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
       ap
           .fetchAttendance(
             classId: '99565b63-e04e-41a7-869a-dc8c72a051f7',
-            date: "2026-02-05",
+            date: DateFormat('yyyy-MM-dd').format(DateTime.now()),
           )
           .then((_) async {
             if (!mounted) return;
@@ -291,10 +291,12 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                 ap.attendance == null ||
                 (ap.attendance!.students?.isEmpty ?? true);
             if (empty) {
+              debugPrint("data>>>>>>>");
               await prov.fetchTeacherClass();
               if (!mounted) return;
               _syncFromProvider();
             } else {
+              await prov.fetchTeacherClass();
               // attendance exists; sync (UI may still fetch class later if needed)
               _syncFromProvider();
             }
@@ -423,7 +425,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                       vertical: 0,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: MyColor.colorF5F9FF,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: MyColor.colorD7E3FC, width: 1),
                     ),

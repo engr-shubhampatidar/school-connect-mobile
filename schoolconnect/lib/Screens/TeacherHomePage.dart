@@ -645,6 +645,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 5,
+            padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
               final selected = _selectedTodayIndex == index;
               return Column(

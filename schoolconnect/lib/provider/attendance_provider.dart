@@ -38,7 +38,7 @@ class AttendanceProvider extends ChangeNotifier {
         debugPrint('AttendanceProvider: no auth token found in prefs');
       }
       final res = await http.get(uri, headers: headers);
-      debugPrint('AttendanceProvider: response status ${res.statusCode}');
+      debugPrint('AttendanceProvider: response status ${res.body}');
       // If server returns an empty body (200 but no content), treat as no attendance
       if (res.body.trim().isEmpty) {
         debugPrint(
