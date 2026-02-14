@@ -85,7 +85,7 @@ class LeaveManagementScreen extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: const Color(0xFF2563EB),
+                color: MyColor.color021034,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Icon(
@@ -166,7 +166,7 @@ class LeaveManagementScreen extends StatelessWidget {
                     "Academic Year 2024",
                     style: TextStyle(
                       fontSize: 11,
-                      color: Color(0xFF2563EB),
+                      color: MyColor.color021034,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -766,7 +766,7 @@ class LeaveManagementScreen extends StatelessWidget {
                       Icon(
                         Icons.check_circle_outline,
                         size: 22,
-                        color: Color(0xFF2563EB),
+                        color: MyColor.color021034,
                       ),
                       SizedBox(width: 8),
                       Text(
@@ -774,7 +774,7 @@ class LeaveManagementScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF2563EB),
+                          color: MyColor.color021034,
                         ),
                       ),
                     ],
