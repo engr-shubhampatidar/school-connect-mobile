@@ -1,3 +1,4 @@
+import 'package:schoolconnect/Screens/DashBoard/StudentProfileScreen.dart';
 import 'package:schoolconnect/export.dart';
 
 class MyClassScreen extends StatelessWidget {
@@ -57,9 +58,9 @@ class MyClassScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               /// Student Cards
-              _studentCard(),
-              _studentCard(),
-              _studentCard(),
+              _studentCard(context),
+              _studentCard(context),
+              _studentCard(context),
 
               const SizedBox(height: 16),
 
@@ -211,41 +212,16 @@ class MyClassScreen extends StatelessWidget {
             "Download Monthly Report",
             svgAsset: AssetsImages.download,
             svgHeight: 15,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AttendanceHistoryScreen(),
-                ),
-              );
-            },
+            onPressed: () {},
             context: context,
           ),
           hSized10,
           _primaryButtonskyblue(
             "View Attendance History",
             svgAsset: AssetsImages.clock,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AttendanceHistoryScreen(),
-                ),
-              );
-            },
+            onPressed: () {},
             context: context,
           ),
-          // OutlinedButton.icon(
-          //   onPressed: () {},
-          //   icon: const Icon(Icons.download),
-          //   label: const Text("Download Monthly Report"),
-          // ),
-          // const SizedBox(height: 8),
-          // OutlinedButton.icon(
-          //   onPressed: () {},
-          //   icon: const Icon(Icons.history),
-          //   label: const Text("View Attendance History"),
-          // ),
         ],
       ),
     );
@@ -285,7 +261,7 @@ class MyClassScreen extends StatelessWidget {
     );
   }
 
-  Widget _studentCard() {
+  Widget _studentCard(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
@@ -359,7 +335,14 @@ class MyClassScreen extends StatelessWidget {
                 width: 1.2,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyProfileScreen(),
+                ),
+              );
+            },
             child: const Text(
               AppStrings.view,
               style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schoolconnect/Screens/DashBoard/StudentReviewRequest.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
 import 'package:schoolconnect/Screens/DashBoard/RequestLeaveScreen.dart';
 import 'package:schoolconnect/constants/strings.dart';
@@ -29,7 +30,11 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black54),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.pushNamedAndRemoveUntil(
+            context,
+            '/dashboard',
+            (route) => false,
+          ),
         ),
         actions: [
           IconButton(
@@ -326,44 +331,61 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // header with light blue background
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: MyColor.colorF5F9FF,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: MyColor.colorF4E8FF,
-                  child: const Icon(Icons.person, color: Colors.grey),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        r.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        r.gradeRoll,
-                        style: const TextStyle(
-                          color: Colors.black54,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => StudentReviewRequest(
+                    // studentName: r.name,
+                    // gradeRoll: r.gradeRoll,
+                    // dateRange: r.dateRange,
+                    // leaveType: r.leaveType,
+                    // reason: r.reason,
+                    // status: r.status,
                   ),
                 ),
-                _statusPill(r.status),
-              ],
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: MyColor.colorF5F9FF,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: MyColor.colorF4E8FF,
+                    child: const Icon(Icons.person, color: Colors.grey),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          r.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          r.gradeRoll,
+                          style: const TextStyle(
+                            color: Colors.black54,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  _statusPill(r.status),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 12),

@@ -10,4 +10,9 @@ class AssetsImages {
   static const plus = "assets/Images/plus.svg";
   static const doubleperson = "assets/Images/doubleperson.svg";
   static const download = "assets/Images/download.svg";
+
+  static const pdf = "assets/Images/pdf.svg";
+  static const leavetype = "assets/Images/leavetype.svg";
+  static const calender_ = "assets/Images/calender_.svg";
+  static const appliedon = "assets/Images/appliedon.svg";
 }
