@@ -80,7 +80,20 @@ class MyColor {
   static const color2750C4 = Color(0xff2750C4);
   static const color6930B3 = Color(0xff6930B3);
   static const colorF4E8FF = Color(0xffF4E8FF);
+  static const colorF5F6FA = Color(0xffF5F6FA);
   static const colorDCFCE6 = Color(0xffDCFCE6);
+  static const colorF4F4F5 = Color(0xFFF4F4F5);
+  static const background = Color(0xFFE2E8F0);
+  // Added for LeaveManagementScreen direct color replacements
+  static const color1E7A3E = Color(0xFF1E7A3E);
+  static const colorDC2626 = Color(0xFFDC2626);
+  static const colorF4F6FA = Color(0xFFF4F6FA);
+  static const color0F172A = Color(0xFF0F172A);
+  static const colorFDE2E2 = Color(0xFFFDE2E2);
+  static const colorE7EEF9 = Color(0xFFE7EEF9);
+  static const colorDCE7F9 = Color(0xFFDCE7F9);
+  static const colorCBD5E1 = Color(0xFFCBD5E1);
+  static const color1E293B = Color(0xFF1E293B);
 }
 
 class AppImages {

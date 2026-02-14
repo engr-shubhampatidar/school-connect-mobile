@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:schoolconnect/Screens/TakeAttendanceScreen.dart';
-import 'package:schoolconnect/constants/Mycolor.dart';
-import 'package:schoolconnect/constants/PrimaryButton.dart';
-import 'package:schoolconnect/constants/imageAssets.dart';
-import 'package:schoolconnect/constants/strings.dart';
+import 'package:schoolconnect/Screens/DashBoard/RequestLeaveScreen.dart';
+import 'package:schoolconnect/export.dart';
 
 class LeaveManagementScreen extends StatelessWidget {
   LeaveManagementScreen({super.key});
@@ -197,7 +193,7 @@ class LeaveManagementScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TakeAttendanceScreen(),
+                    builder: (context) => const RequestLeaveScreen(),
                   ),
                 );
               },

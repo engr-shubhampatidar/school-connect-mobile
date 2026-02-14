@@ -67,4 +67,25 @@ class AppStrings {
   static const String editSave = 'Edit & Save Changes';
   static const String saveAttendance = 'Save Attendance';
   static const String editableNote = 'Attendance can be edited by today only';
+
+  // Leave management strings
+  static const String leaveManagementTitle = 'Leave mangement';
+  static const String myLeaves = 'My Leaves';
+  static const String studentRequests = 'Student Requests';
+
+  static const String recentLeaveRequests = 'Recent Leave Requests';
+  static const String pendingStudentRequests = 'Pending Student Requests';
+  static const String switchTabsMessage =
+      'Switch tabs to manage student leave requests';
+
+  static const String searchHint = 'Search Student, Staff....';
+
+  static const String reject = 'Reject';
+  static const String approve = 'Approve';
+  static const String takeAction = 'Take Action';
+
+  static const String paidLeave = 'Paid Leave';
+  static const String paidLeaveSubtitle = '10 is max';
+  static const String totalUsed = 'Total used';
+  static const String totalUsedSubtitle = 'This year';
 }

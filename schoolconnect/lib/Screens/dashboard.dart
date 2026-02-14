@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schoolconnect/Screens/DashBoard/LeaveManagementScreen.dart';
 import 'package:schoolconnect/Screens/DashBoard/MyClassScreen.dart';
+import 'package:schoolconnect/Screens/DashBoard/new_LeaveManagementScreen.dart';
 import 'package:schoolconnect/Screens/MySubjectScreen.dart';
 import 'package:schoolconnect/Screens/TeacherHomePage.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
@@ -17,7 +18,7 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
 
   final List<Widget> _screens = [
     const TeacherHomePage(),
-    LeaveManagementScreen(),
+    NewLeaveManagementScreen(),
     // MySubjectScreen(),
     const MyClassScreen(),
     const AssignmentScreen(),

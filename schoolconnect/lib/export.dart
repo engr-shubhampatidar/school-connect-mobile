@@ -14,3 +14,4 @@ export 'package:schoolconnect/Screens/AttendanceHistoryScreen.dart';
 export 'package:schoolconnect/constants/sizesbox.dart';
 export 'package:schoolconnect/export.dart';
 export 'package:lucide_icons/lucide_icons.dart';
+export 'package:schoolconnect/constants/PrimaryButton.dart';
