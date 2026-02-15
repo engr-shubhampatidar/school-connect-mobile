@@ -52,31 +52,40 @@ class MyProfileScreen extends StatelessWidget {
                 title: "Personal Information",
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Full Name", "Rahul Sharma"),
-                      _infoBox("Date of Birth", "18 march 2005"),
+                      Expanded(child: _infoBox("Full Name", "Rahul Sharma")),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _infoBox("Date of Birth", "18 march 2005"),
+                      ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Gender", "Male"),
-                      _infoBox("Blood Group", "B+"),
+                      Expanded(child: _infoBox("Gender", "Male")),
+                      const SizedBox(width: 12),
+                      Expanded(child: _infoBox("Blood Group", "B+")),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Category", "OBC"),
-                      _infoBox("Aadhar Number", "123-12546-1425"),
+                      Expanded(child: _infoBox("Category", "OBC")),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _infoBox("Aadhar Number", "123-12546-1425"),
+                      ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Phone No.", "+91 9856316754"),
-                      _infoBox("Email Address", "rahulsharma@gmail.com"),
+                      Expanded(child: _infoBox("Phone No.", "+91 9856316754")),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _infoBox(
+                          "Email Address",
+                          "rahulsharma@gmail.com",
+                        ),
+                      ),
                     ],
                   ),
 
@@ -94,17 +103,24 @@ class MyProfileScreen extends StatelessWidget {
                 title: "Parent / Guardian Information",
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Father Name", "Rajesh Jain"),
-                      _infoBox("Mother Name", "Priya sharma"),
+                      Expanded(child: _infoBox("Father Name", "Rajesh Jain")),
+                      const SizedBox(width: 12),
+                      Expanded(child: _infoBox("Mother Name", "Priya sharma")),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _infoBox("Parent Contact", "+91 7986321565"),
-                      _infoBox("Parent Mail", "rajeshsharma@gmail.com"),
+                      Expanded(
+                        child: _infoBox("Parent Contact", "+91 7986321565"),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _infoBox(
+                          "Parent Mail",
+                          "rajeshsharma@gmail.com",
+                        ),
+                      ),
                     ],
                   ),
 
@@ -353,7 +369,7 @@ class MyProfileScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center, // center alignment
         children: [
-          const Icon(Icons.description_outlined, size: 50),
+          const Icon(Icons.description_outlined, size: 30),
           const SizedBox(width: 12),
 
           /// Title + PDF badge

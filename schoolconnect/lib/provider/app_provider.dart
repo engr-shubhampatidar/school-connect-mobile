@@ -1,5 +1,6 @@
 import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/provider/attendance_provider.dart';
+import 'package:schoolconnect/provider/leave_provider.dart';
 
 class AppProviders {
   static MultiProvider init({required Widget child}) {
@@ -7,6 +8,7 @@ class AppProviders {
       providers: [
         ChangeNotifierProvider(create: (_) => RoleProvider()),
         ChangeNotifierProvider(create: (_) => AttendanceProvider()),
+        ChangeNotifierProvider(create: (_) => LeaveProvider()),
         ChangeNotifierProvider(create: (_) => TeacherProvider()),
       ],
       child: child,

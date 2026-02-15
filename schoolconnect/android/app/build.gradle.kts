@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.schoolconnect"
-    compileSdk = 35   // ✅ stable
+    compileSdk = 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {

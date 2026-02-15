@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:schoolconnect/Screens/DashBoard/StudentReviewRequest.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
+import 'package:provider/provider.dart';
+import 'package:schoolconnect/provider/leave_provider.dart';
 import 'package:schoolconnect/Screens/DashBoard/RequestLeaveScreen.dart';
 import 'package:schoolconnect/constants/strings.dart';
 
@@ -13,7 +15,7 @@ class NewLeaveManagementScreen extends StatefulWidget {
 }
 
 class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
-  int _selectedIndex = 0;
+  // selected index is now managed by LeaveProvider
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +64,14 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                   children: [
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => setState(() => _selectedIndex = 0),
+                        onTap: () =>
+                            context.read<LeaveProvider>().selectIndex(0),
                         child: Container(
                           margin: const EdgeInsets.all(6),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           alignment: Alignment.centerLeft,
-                          decoration: _selectedIndex == 0
+                          decoration:
+                              context.watch<LeaveProvider>().selectedIndex == 0
                               ? BoxDecoration(
                                   color: MyColor.colorEEF4FF,
                                   borderRadius: BorderRadius.circular(14),
@@ -82,7 +86,11 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                               Icon(
                                 Icons.calendar_today,
                                 size: 18,
-                                color: _selectedIndex == 0
+                                color:
+                                    context
+                                            .watch<LeaveProvider>()
+                                            .selectedIndex ==
+                                        0
                                     ? MyColor.color021034
                                     : MyColor.color64748B,
                               ),
@@ -91,7 +99,11 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                                 AppStrings.myLeaves,
                                 style: TextStyle(
                                   fontSize: 16,
-                                  fontWeight: _selectedIndex == 0
+                                  fontWeight:
+                                      context
+                                              .watch<LeaveProvider>()
+                                              .selectedIndex ==
+                                          0
                                       ? FontWeight.w700
                                       : FontWeight.w600,
                                   color: MyColor.color021034,
@@ -104,12 +116,14 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => setState(() => _selectedIndex = 1),
+                        onTap: () =>
+                            context.read<LeaveProvider>().selectIndex(1),
                         child: Container(
                           margin: const EdgeInsets.all(6),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           alignment: Alignment.centerLeft,
-                          decoration: _selectedIndex == 1
+                          decoration:
+                              context.watch<LeaveProvider>().selectedIndex == 1
                               ? BoxDecoration(
                                   color: MyColor.colorEEF4FF,
                                   borderRadius: BorderRadius.circular(14),
@@ -123,7 +137,11 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                             AppStrings.studentRequests,
                             style: TextStyle(
                               fontSize: 14,
-                              fontWeight: _selectedIndex == 1
+                              fontWeight:
+                                  context
+                                          .watch<LeaveProvider>()
+                                          .selectedIndex ==
+                                      1
                                   ? FontWeight.w700
                                   : FontWeight.w600,
                               color: MyColor.color021034,
@@ -138,14 +156,14 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
             ),
           ),
           Expanded(
-            child: _selectedIndex == 0
+            child: context.watch<LeaveProvider>().selectedIndex == 0
                 ? _buildMyLeaves(context)
                 : _buildStudentRequests(context),
           ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: _selectedIndex == 0
+      floatingActionButton: context.watch<LeaveProvider>().selectedIndex == 0
           ? FloatingActionButton(
               onPressed: () {
                 Navigator.push(

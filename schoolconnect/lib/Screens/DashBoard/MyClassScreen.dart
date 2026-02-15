@@ -219,7 +219,14 @@ class MyClassScreen extends StatelessWidget {
           _primaryButtonskyblue(
             "View Attendance History",
             svgAsset: AssetsImages.clock,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AttendanceHistoryScreen(),
+                ),
+              );
+            },
             context: context,
           ),
         ],
