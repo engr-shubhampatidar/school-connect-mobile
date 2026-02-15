@@ -1,4 +1,6 @@
 import 'package:schoolconnect/export.dart';
+import 'package:provider/provider.dart';
+import '../provider/teacher_home_provider.dart';
 
 class TeacherHomePage extends StatefulWidget {
   const TeacherHomePage({super.key});
@@ -8,8 +10,6 @@ class TeacherHomePage extends StatefulWidget {
 }
 
 class _TeacherHomePageState extends State<TeacherHomePage> {
-  int _selectedTodayIndex = 0;
-
   @override
   void initState() {
     super.initState();
@@ -17,311 +17,262 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final double topPadding = MediaQuery.of(context).padding.top;
-    return Scaffold(
-      backgroundColor: const Color(0xFFF4F7FC),
-      body: Column(
-        children: [
-          // Paint the status-bar area on iOS so it matches the header color
-          AnnotatedRegion<SystemUiOverlayStyle>(
-            value: const SystemUiOverlayStyle(
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.dark,
-            ),
-            child: Container(
-              height: topPadding,
-              color: const Color(0xFF021034),
-            ),
-          ),
-          Expanded(
-            child: SafeArea(
-              top: false,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // 🔹 HEADER (static, not inside scroll view)
-                  Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF021034),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 22,
-                            backgroundColor: Colors.white,
-                            child: Image.asset(AssetsImages.loginperson),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 0),
-                                Text(
-                                  AppStrings.welcomeBack,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "Monday, Oct 23 · ",
-                                        style: TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "Class Teacher - 10A",
-                                        style: TextStyle(
-                                          color: MyColor.color16A34A,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+    return ChangeNotifierProvider(
+      create: (_) => TeacherHomeProvider(),
+      child: Consumer<TeacherHomeProvider>(
+        builder: (context, thModel, _) {
+          final double topPadding = MediaQuery.of(context).padding.top;
+          return Scaffold(
+            backgroundColor: const Color(0xFFF4F7FC),
+            body: Column(
+              children: [
+                // Paint the status-bar area on iOS so it matches the header color
+                Container(height: topPadding, color: const Color(0xFF021034)),
+                Expanded(
+                  child: SafeArea(
+                    top: false,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 🔹 HEADER (static, not inside scroll view)
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF021034),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(16),
+                              bottomRight: Radius.circular(16),
                             ),
                           ),
-                          SvgPicture.asset(
-                            AssetsImages.bell,
-                            width: 24,
-                            height: 24,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // Scrollable content below the static header
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 20),
-
-                          /// 🔹 STATS CARDS (horizontal scroll)
-                          SizedBox(
-                            height: 111,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
+                            child: Row(
                               children: [
-                                _infoCard(
-                                  title: "05",
-                                  subtitle: "Today’s Classes",
-                                  footer: "3 Complete  2 Remaining",
-                                  svgAsset: AssetsImages.person,
+                                CircleAvatar(
+                                  radius: 22,
+                                  backgroundColor: Colors.white,
+                                  child: Image.asset(AssetsImages.loginperson),
                                 ),
                                 const SizedBox(width: 12),
-                                _infoCard(
-                                  title: "Pending",
-                                  subtitle: "Attendance Status",
-                                  footer: "For Class 10A",
-                                  svgAsset: AssetsImages.calendar,
-                                ),
-                                const SizedBox(width: 12),
-                                _infoCard(
-                                  title: "Pending marks",
-                                  subtitle: "02",
-                                  footer: "2 subject marks are pending",
-                                  svgAsset: AssetsImages.editpage,
-                                ),
-                                const SizedBox(width: 12),
-                                _infoCard(
-                                  title: "Next Class",
-                                  subtitle: "Physics",
-                                  footer: "Start in 15 min, Room(105) in 11thB",
-                                  svgAsset: AssetsImages.remainclock,
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          const SizedBox(height: 16),
-                          _myClassCard(), hSized20,
-
-                          /// 🔹 MY CLASS
-                          /// 🔹 ASSIGNED SUBJECTS (NEW UI)
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(14),
-                              border: Border.all(
-                                color: MyColor.colorD7E3FC,
-                                width: 1.5,
-                              ),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Header (padded)
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                    16,
-                                    16,
-                                    0,
-                                    12,
-                                  ),
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: const [
+                                    children: [
+                                      const SizedBox(height: 0),
                                       Text(
-                                        AppStrings.assignedSubjectsTitle,
-                                        style: TextStyle(
+                                        AppStrings.welcomeBack,
+                                        style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
-                                          fontFamily: 'Roboto',
+                                          color: Colors.white,
                                         ),
                                       ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        AppStrings.studentListSubtitle,
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
+                                      const SizedBox(height: 4),
+                                      Text.rich(
+                                        TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: "Monday, Oct 23 · ",
+                                              style: TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: "Class Teacher - 10A",
+                                              style: TextStyle(
+                                                color: MyColor.color16A34A,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                const Divider(
-                                  color: MyColor.colorD7E3FC,
-                                  thickness: 1,
-                                  height: 1,
+                                SvgPicture.asset(
+                                  AssetsImages.bell,
+                                  width: 24,
+                                  height: 24,
+                                  color: Colors.white,
                                 ),
-                                hSized5,
-                                // Subject rows with full-width dividers between them
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: _assignedSubjectItem(),
-                                ),
-                                const Divider(
-                                  color: MyColor.colorD7E3FC,
-                                  thickness: 1,
-                                  height: 1,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: _assignedSubjectItem(),
-                                ),
-                                const Divider(
-                                  color: MyColor.colorD7E3FC,
-                                  thickness: 1,
-                                  height: 1,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: _assignedSubjectItem(),
-                                ),
-                                const Divider(
-                                  color: MyColor.colorD7E3FC,
-                                  thickness: 1,
-                                  height: 1,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: _assignedSubjectItem(),
-                                ),
-                                // const SizedBox(height: 16),
                               ],
                             ),
                           ),
+                        ),
 
-                          hSized20,
+                        // Scrollable content below the static header
+                        Expanded(
+                          child: SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 20),
 
-                          /// 🔹 ASSIGNED SUBJECTS
-                          // Container(
-                          //   padding: const EdgeInsets.all(14),
-                          //   decoration: _cardDecoration(),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       const Text(
-                          //         "Assigned Subjects",
-                          //         style: TextStyle(
-                          //           fontSize: 16,
-                          //           fontWeight: FontWeight.w600,
-                          //         ),
-                          //       ),
-                          //       const SizedBox(height: 6),
-                          //       const Text(
-                          //         "Manage your teaching assignment and mark entry",
-                          //         style: TextStyle(color: Colors.grey, fontSize: 13),
-                          //       ),
-                          //       const SizedBox(height: 12),
+                                /// 🔹 STATS CARDS (horizontal scroll)
+                                SizedBox(
+                                  height: 111,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      _infoCard(
+                                        title: "05",
+                                        subtitle: "Today’s Classes",
+                                        footer: "3 Complete  2 Remaining",
+                                        svgAsset: AssetsImages.person,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      _infoCard(
+                                        title: "Pending",
+                                        subtitle: "Attendance Status",
+                                        footer: "For Class 10A",
+                                        svgAsset: AssetsImages.calendar,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      _infoCard(
+                                        title: "Pending marks",
+                                        subtitle: "02",
+                                        footer: "2 subject marks are pending",
+                                        svgAsset: AssetsImages.editpage,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      _infoCard(
+                                        title: "Next Class",
+                                        subtitle: "Physics",
+                                        footer:
+                                            "Start in 15 min, Room(105) in 11thB",
+                                        svgAsset: AssetsImages.remainclock,
+                                      ),
+                                    ],
+                                  ),
+                                ),
 
-                          //       _subjectTile(),
-                          //       _subjectTile(),
-                          //       _subjectTile(),
-                          //     ],
-                          //   ),
-                          // ),
-                          _todaysClassesCard(),
-                          const SizedBox(height: 20),
+                                const SizedBox(height: 16),
+                                _myClassCard(), hSized20,
 
-                          /// 🔹 TODAY’S CLASSES
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     const Text(
-                          //       "Today’s Classes",
-                          //       style: TextStyle(
-                          //         fontSize: 16,
-                          //         fontWeight: FontWeight.w600,
-                          //       ),
-                          //     ),
-                          //     Container(
-                          //       padding: const EdgeInsets.symmetric(
-                          //         horizontal: 12,
-                          //         vertical: 6,
-                          //       ),
-                          //       decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(20),
-                          //         color: const Color(0xFFEFF4FF),
-                          //       ),
-                          //       child: const Text("Tuesday"),
-                          //     ),
-                          //   ],
-                          // ),
-                        ],
-                      ),
+                                /// 🔹 MY CLASS
+                                /// 🔹 ASSIGNED SUBJECTS (NEW UI)
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: MyColor.colorD7E3FC,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // Header (padded)
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                          16,
+                                          16,
+                                          0,
+                                          12,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: const [
+                                            Text(
+                                              AppStrings.assignedSubjectsTitle,
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: 'Roboto',
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              AppStrings.studentListSubtitle,
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: MyColor.colorD7E3FC,
+                                        thickness: 1,
+                                        height: 1,
+                                      ),
+                                      hSized5,
+                                      // Subject rows with full-width dividers between them
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                        ),
+                                        child: _assignedSubjectItem(),
+                                      ),
+                                      const Divider(
+                                        color: MyColor.colorD7E3FC,
+                                        thickness: 1,
+                                        height: 1,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                        ),
+                                        child: _assignedSubjectItem(),
+                                      ),
+                                      const Divider(
+                                        color: MyColor.colorD7E3FC,
+                                        thickness: 1,
+                                        height: 1,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                        ),
+                                        child: _assignedSubjectItem(),
+                                      ),
+                                      const Divider(
+                                        color: MyColor.colorD7E3FC,
+                                        thickness: 1,
+                                        height: 1,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 16,
+                                        ),
+                                        child: _assignedSubjectItem(),
+                                      ),
+                                      // const SizedBox(height: 16),
+                                    ],
+                                  ),
+                                ),
+
+                                hSized20,
+
+                                /// 🔹 ASSIGNED SUBJECTS
+                                _todaysClassesCard(thModel),
+                                const SizedBox(height: 20),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -603,7 +554,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
     );
   }
 
-  Widget _todaysClassesCard() {
+  Widget _todaysClassesCard(TeacherHomeProvider thModel) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -647,11 +598,12 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
             itemCount: 5,
             padding: EdgeInsets.zero,
             itemBuilder: (context, index) {
-              final selected = _selectedTodayIndex == index;
+              final selected = thModel.selectedTodayIndex == index;
               return Column(
                 children: [
                   GestureDetector(
-                    onTap: () => setState(() => _selectedTodayIndex = index),
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () => thModel.selectTodayIndex(index),
                     child: _todayClassItem(index: index, selected: selected),
                   ),
                   if (index < 4)

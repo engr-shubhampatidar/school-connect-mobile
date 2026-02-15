@@ -10,20 +10,28 @@ class StudentReviewRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F8FA),
+      backgroundColor: MyColor.colorF5F6FA,
       appBar: AppBar(
+        surfaceTintColor: MyColor.colorF5F6FA,
         elevation: 0,
-        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black87,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 20,
+            color: MyColor.color021034,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
           'Review Request',
-          style: TextStyle(fontWeight: FontWeight.w600),
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            color: MyColor.color021034,
+          ),
         ),
       ),
       body: SafeArea(
@@ -208,10 +216,10 @@ class StudentReviewRequest extends StatelessWidget {
                         child: Row(
                           children: [
                             Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     color: MyColor.colorD7E3FC,
                                     borderRadius: BorderRadius.circular(8),
@@ -250,14 +258,11 @@ class StudentReviewRequest extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'VIEW',
-                                style: TextStyle(
-                                  color: MyColor.color64748B,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            const Text(
+                              'VIEW',
+                              style: TextStyle(
+                                color: MyColor.color64748B,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ],

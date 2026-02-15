@@ -127,14 +127,17 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
           icon: const Icon(
             Icons.arrow_back_ios_new,
             size: 20,
-            color: Colors.black,
+            color: MyColor.color021034,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
         title: const Text(
           'Attendance History',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            color: MyColor.color021034,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         actions: [
           IconButton(

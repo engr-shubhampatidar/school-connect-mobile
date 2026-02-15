@@ -14,12 +14,17 @@ class RequestLeaveScreen extends StatelessWidget {
       child: Consumer<RequestLeaveProvider>(
         builder: (context, model, child) {
           return Scaffold(
-            backgroundColor: MyColor.background,
+            backgroundColor: MyColor.colorF5F6FA,
             appBar: AppBar(
-              backgroundColor: MyColor.background,
+              surfaceTintColor: MyColor.colorF5F6FA,
+              backgroundColor: MyColor.colorF5F6FA,
               elevation: 0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: MyColor.color021034,
+                  size: 20,
+                ),
                 onPressed: () => Navigator.pop(context),
               ),
               title: const Column(
@@ -28,9 +33,9 @@ class RequestLeaveScreen extends StatelessWidget {
                   Text(
                     "Apply Leave",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 22,
                       fontWeight: FontWeight.w600,
+                      color: MyColor.color021034,
                     ),
                   ),
                 ],

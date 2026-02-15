@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:schoolconnect/Screens/DashBoard/StudentReviewRequest.dart';
 import 'package:schoolconnect/constants/Mycolor.dart';
 import 'package:provider/provider.dart';
+import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/provider/leave_provider.dart';
 import 'package:schoolconnect/Screens/DashBoard/RequestLeaveScreen.dart';
 import 'package:schoolconnect/constants/strings.dart';
@@ -22,28 +23,28 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
     return Scaffold(
       backgroundColor: MyColor.colorF5F6FA,
       appBar: AppBar(
+        backgroundColor: MyColor.colorF5F6FA,
         surfaceTintColor: MyColor.colorF5F6FA,
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
+        centerTitle: false,
+
         title: Text(
           AppStrings.leaveManagementTitle,
-          style: const TextStyle(color: Colors.black87),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black54),
-          onPressed: () => Navigator.pushNamedAndRemoveUntil(
-            context,
-            '/dashboard',
-            (route) => false,
+          style: const TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            color: MyColor.color021034,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black54),
-            onPressed: () {},
-          ),
-        ],
+
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black54),
+        //   onPressed: () => Navigator.pushNamedAndRemoveUntil(
+        //     context,
+        //     '/dashboard',
+        //     (route) => false,
+        //   ),
+        // ),
       ),
       body: Column(
         children: [

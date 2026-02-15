@@ -1,11 +1,16 @@
 import 'package:schoolconnect/Screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:schoolconnect/export.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:schoolconnect/Screens/dashboard.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.dark,
+  ));
   final prefs = await SharedPreferences.getInstance();
   final hasToken = prefs.getString('auth_token') != null;
   runApp(

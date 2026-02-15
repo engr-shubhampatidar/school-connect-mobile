@@ -8,6 +8,25 @@ class MyClassScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F6FA),
+      appBar: AppBar(
+        surfaceTintColor: MyColor.colorF5F6FA,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: false,
+        title: Text(
+          "My Class",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        ),
+
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black54),
+        //   onPressed: () => Navigator.pushNamedAndRemoveUntil(
+        //     context,
+        //     '/dashboard',
+        //     (route) => false,
+        //   ),
+        // ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -15,11 +34,11 @@ class MyClassScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Title
-              const Text(
-                "My Class",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: 16),
+              // const Text(
+              //   "My Class",
+              //   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              // ),
+              // const SizedBox(height: 16),
 
               /// Class Info Card
               _classInfoCard(),
