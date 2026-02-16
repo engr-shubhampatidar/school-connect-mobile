@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:schoolconnect/Screens/DashBoard/LeaveManagementScreen.dart';
 import 'package:schoolconnect/Screens/DashBoard/MyClassScreen.dart';
+import 'package:schoolconnect/Screens/DashBoard/myattendance.dart';
 import 'package:schoolconnect/Screens/DashBoard/new_LeaveManagementScreen.dart';
 import 'package:schoolconnect/Screens/MySubjectScreen.dart';
 import 'package:schoolconnect/Screens/TeacherHomePage.dart';
@@ -21,7 +21,7 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
     NewLeaveManagementScreen(),
     // MySubjectScreen(),
     const MyClassScreen(),
-    const AssignmentScreen(),
+    const MyAttendance(),
   ];
 
   @override
@@ -65,7 +65,7 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.assignment_outlined),
-              label: "Assignments",
+              label: "My Attendance",
             ),
           ],
         ),

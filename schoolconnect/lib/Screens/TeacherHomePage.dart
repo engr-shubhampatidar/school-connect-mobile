@@ -1,5 +1,4 @@
 import 'package:schoolconnect/export.dart';
-import 'package:provider/provider.dart';
 import '../provider/teacher_home_provider.dart';
 
 class TeacherHomePage extends StatefulWidget {
@@ -23,7 +22,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
         builder: (context, thModel, _) {
           final double topPadding = MediaQuery.of(context).padding.top;
           return Scaffold(
-            backgroundColor: const Color(0xFFF4F7FC),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: Column(
               children: [
                 // Paint the status-bar area on iOS so it matches the header color

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/model.dart/attendanceclass.dart';
 
@@ -119,9 +117,9 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
         .where((d) => d.isNotEmpty)
         .length;
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7FC),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF4F7FC),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
