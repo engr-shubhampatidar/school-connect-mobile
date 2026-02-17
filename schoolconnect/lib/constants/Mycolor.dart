@@ -94,6 +94,50 @@ class MyColor {
   static const colorDCE7F9 = Color(0xFFDCE7F9);
   static const colorCBD5E1 = Color(0xFFCBD5E1);
   static const color1E293B = Color(0xFF1E293B);
+  // A subtle, desaturated Google Maps style to match the app's muted UI
+  static const String googleMapStyle = r'''
+[
+  { "featureType": "all", "elementType": "geometry", "stylers": [{"color": "#f5f7fa"}]},
+  { "featureType": "poi", "elementType": "labels", "stylers": [{"visibility": "off"}]},
+  { "featureType": "transit", "elementType": "labels", "stylers": [{"visibility": "off"}]},
+  { "featureType": "water", "elementType": "geometry", "stylers": [{"color": "#dbefff"}]},
+  { "featureType": "road", "elementType": "geometry", "stylers": [{"color": "#e9eef6"}]}
+]
+''';
+}
+
+// Map style and app text styles used across the app
+
+class AppTextStyles {
+  static const String fontFamily = 'Roboto';
+
+  static const TextStyle heading = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 22,
+    fontWeight: FontWeight.w700,
+    color: MyColor.color021034,
+  );
+
+  static const TextStyle subtitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Colors.black54,
+  );
+
+  static const TextStyle body = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black87,
+  );
+
+  static const TextStyle pill = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+    color: Colors.black87,
+  );
 }
 
 class AppImages {

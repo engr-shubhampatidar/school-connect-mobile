@@ -15,4 +15,5 @@ class AssetsImages {
   static const leavetype = "assets/Images/leavetype.svg";
   static const calender_ = "assets/Images/calender_.svg";
   static const appliedon = "assets/Images/appliedon.svg";
+  static const rightpop = "assets/Images/rightpop.svg";
 }

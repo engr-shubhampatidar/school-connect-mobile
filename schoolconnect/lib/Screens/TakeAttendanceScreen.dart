@@ -5,6 +5,7 @@ import 'package:schoolconnect/export.dart';
 import 'package:schoolconnect/model.dart/teacherclass.dart';
 
 import 'package:shadcn_ui/shadcn_ui.dart' hide LucideIcons;
+import 'package:schoolconnect/Screens/DashBoard/RequestLeaveScreen.dart';
 
 enum AttendanceStatus { none, present, absent, leave }
 
@@ -57,7 +58,6 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
         case AttendanceStatus.leave:
           statusStr = 'LEAVE';
           break;
-        case AttendanceStatus.none:
         default:
           statusStr = 'ABSENT';
       }
@@ -194,7 +194,7 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
     if (attendanceMap.isNotEmpty) {
       for (var i = 0; i < students.length; i++) {
         final sid = students[i].id;
-        final sStat = sid != null ? attendanceMap[sid] : null;
+        final sStat = attendanceMap[sid];
         newStatuses[i] = _statusFromString(sStat);
       }
     } else {
@@ -718,6 +718,15 @@ class _TakeAttendanceScreenState extends State<TakeAttendanceScreen> {
                                               index,
                                               AttendanceStatus.leave,
                                             ),
+                                            onLongPress: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const RequestLeaveScreen(),
+                                                ),
+                                              );
+                                            },
                                             child: Container(
                                               width: 36,
                                               height: 32,
