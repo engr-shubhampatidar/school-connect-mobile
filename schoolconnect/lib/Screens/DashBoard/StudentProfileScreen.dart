@@ -133,6 +133,11 @@ class MyProfileScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
+              /// Attendance Summary
+              _attendanceSummaryCard(context),
+
+              const SizedBox(height: 16),
+
               /// Documents
               _documentsCard(),
 
@@ -335,6 +340,184 @@ class MyProfileScreen extends StatelessWidget {
 
   /// ================= DOCUMENT CARD =================
 
+  Widget _attendanceSummaryCard(BuildContext context) {
+    const double attendancePercent = 94.5;
+    const int presentDays = 85;
+    const int absentDays = 5;
+    final bool isCompact = MediaQuery.of(context).size.width < 360;
+
+    final double titleFontSize = isCompact ? 18 : 20;
+    final double percentFontSize = isCompact ? 44 : 56;
+    final double subtitleFontSize = isCompact ? 14 : 18;
+    final double legendFontSize = isCompact ? 15 : 17;
+    final double valueFontSize = isCompact ? 15 : 17;
+    final double buttonFontSize = isCompact ? 16 : 18;
+    final double progressHeight = isCompact ? 14 : 18;
+
+    return Container(
+      padding: const EdgeInsets.all(0),
+      decoration: _cardDecoration(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Attendance Summary',
+                    style: TextStyle(
+                      fontSize: titleFontSize,
+                      fontWeight: FontWeight.w700,
+                      color: MyColor.color021034,
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.calendar_today_outlined,
+                  size: isCompact ? 20 : 24,
+                  color: const Color(0xFF8B8B8B),
+                ),
+              ],
+            ),
+          ),
+          Container(height: 1, color: MyColor.colorD7E3FC),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '94.5%',
+                      style: TextStyle(
+                        fontSize: percentFontSize,
+                        height: 0.95,
+                        fontWeight: FontWeight.w700,
+                        color: MyColor.color021034,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'This Month Attendance',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: subtitleFontSize,
+                            fontWeight: FontWeight.w500,
+                            height: 1.2,
+                            color: const Color(0xFF16A34A),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 22),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    minHeight: progressHeight,
+                    value: attendancePercent / 100,
+                    backgroundColor: const Color(0xFFC8D8F4),
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      MyColor.color021034,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 28),
+                _attendanceLegendItem(
+                  dotColor: const Color(0xFF16A34A),
+                  label: 'Precent',
+                  value: '$presentDays Days',
+                  labelFontSize: legendFontSize,
+                  valueFontSize: valueFontSize,
+                ),
+                const SizedBox(height: 12),
+                _attendanceLegendItem(
+                  dotColor: const Color(0xFFE11D48),
+                  label: 'Absent',
+                  value: '0$absentDays Days',
+                  labelFontSize: legendFontSize,
+                  valueFontSize: valueFontSize,
+                ),
+                const SizedBox(height: 18),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: MyColor.colorD7E3FC),
+                      foregroundColor: MyColor.color021034,
+                      minimumSize: const Size.fromHeight(54),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: buttonFontSize,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    child: const Text('View Full Attendance'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _attendanceLegendItem({
+    required Color dotColor,
+    required String label,
+    required String value,
+    required double labelFontSize,
+    required double valueFontSize,
+  }) {
+    return Row(
+      children: [
+        Container(
+          width: 12,
+          height: 12,
+          decoration: BoxDecoration(color: dotColor, shape: BoxShape.circle),
+        ),
+        const SizedBox(width: 12),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: labelFontSize,
+            fontWeight: FontWeight.w500,
+            color: MyColor.color021034,
+          ),
+        ),
+        const Spacer(),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF1F5F9),
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: valueFontSize,
+              fontWeight: FontWeight.w700,
+              color: MyColor.color021034,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _documentsCard() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -442,20 +625,6 @@ class MyProfileScreen extends StatelessWidget {
             color: textColor ?? const Color(0xFF475569),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _activeChip() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: const Color(0xFFD1FAE5),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Text(
-        "Active",
-        style: TextStyle(fontSize: 11, color: Colors.green),
       ),
     );
   }
