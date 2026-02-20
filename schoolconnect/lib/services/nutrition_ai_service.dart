@@ -20,7 +20,7 @@ class NutritionAiService {
 
   Future<PassioStatus> configureForAdvisor({
     required String key,
-    int debugMode = 1,
+    int debugMode = 2,
   }) async {
     const maxAttempts = 3;
     PassioStatus? lastStatus;
@@ -36,6 +36,12 @@ class NutritionAiService {
       final status = await NutritionAI.instance.configureSDK(configuration);
       lastStatus = status;
       logger?.call('configure:result=$status');
+      // Also emit the SDK-provided debug message for richer diagnostics.
+      try {
+        logger?.call('configure:debug=${status.debugMessage ?? "<null>"}');
+      } catch (_) {
+        // ignore
+      }
 
       if (!_shouldRetry(status) || attempt == maxAttempts) {
         return status;

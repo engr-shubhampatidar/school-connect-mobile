@@ -1,3 +1,4 @@
+import 'package:schoolconnect/Screens/DashBoard/nutrationai.dart';
 import 'package:schoolconnect/Screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,10 +8,12 @@ import 'package:schoolconnect/Screens/dashboard.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarIconBrightness: Brightness.dark,
-    statusBarBrightness: Brightness.dark,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
+    ),
+  );
   final prefs = await SharedPreferences.getInstance();
   final hasToken = prefs.getString('auth_token') != null;
   runApp(
@@ -29,12 +32,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Connect',
-      // Force a fixed textScaleFactor so system font scaling doesn't
-      // affect the app's text styles.
+      // Force a fixed text scale so system font scaling doesn't
+      // affect the app's text styles. Uses `textScaler` (non-deprecated).
       builder: (BuildContext context, Widget? child) {
         final mediaQuery = MediaQuery.of(context);
+        final windowScale = WidgetsBinding.instance.window.textScaleFactor;
+        debugPrint(
+          'MediaQuery before override: ${mediaQuery.textScaleFactor}, window: $windowScale',
+        );
+        final newMedia = mediaQuery.copyWith(textScaleFactor: 1.0);
+        debugPrint('MediaQuery after override: ${newMedia.textScaleFactor}');
         return MediaQuery(
-          data: mediaQuery.copyWith(textScaleFactor: 1.0),
+          data: newMedia,
           child: child ?? const SizedBox.shrink(),
         );
       },

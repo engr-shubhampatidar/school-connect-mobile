@@ -22,7 +22,7 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
     NewLeaveManagementScreen(),
     // MySubjectScreen(),
     const MyClassScreen(),
-    const MyWidget(),
+    const MyAttendance(),
   ];
 
   @override
