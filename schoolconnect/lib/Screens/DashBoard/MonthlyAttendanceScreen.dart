@@ -162,7 +162,7 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
           children: [
             Container(
               width: 64,
-              height: 64,
+              height: 57,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -171,7 +171,9 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                   width: selected ? 2.2 : 1.0,
                 ),
               ),
-              child: Stack(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
                     child: Text(
@@ -189,19 +191,15 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                       ),
                     ),
                   ),
+                  hSized10,
                   if (!isOther)
-                    Positioned(
-                      bottom: 10,
-                      left: 0,
-                      right: 0,
-                      child: Center(
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: dotColor ?? Colors.transparent,
-                            shape: BoxShape.circle,
-                          ),
+                    Center(
+                      child: Container(
+                        width: 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: dotColor ?? Colors.transparent,
+                          shape: BoxShape.circle,
                         ),
                       ),
                     ),
@@ -285,14 +283,19 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
       backgroundColor: MyColor.colorEFF3FA,
       appBar: AppBar(
         backgroundColor: MyColor.colorEFF3FA,
+        surfaceTintColor: MyColor.colorEFF3FA,
         elevation: 0,
         centerTitle: true,
         title: const Text(
           'My Attendance',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: MyColor.color021034,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -320,24 +323,23 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                         child: Row(
                           children: [
                             const Icon(
-                              Icons.calendar_today,
+                              Icons.calendar_month,
                               size: 18,
                               color: MyColor.color021034,
                             ),
                             const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                '${monthNames[month - 1]} $year',
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                ),
+                            Text(
+                              '${monthNames[month - 1]} $year',
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: MyColor.color021034,
+                                fontSize: 14,
                               ),
                             ),
-                            const SizedBox(width: 6),
+                            wSized5,
                             const Icon(
-                              Icons.arrow_drop_down,
+                              Icons.keyboard_arrow_down,
                               color: MyColor.color021034,
                             ),
                           ],
@@ -501,7 +503,7 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                     ),
                     child: Wrap(
                       alignment: WrapAlignment.center,
-                      spacing: 24,
+                      spacing: 13,
                       runSpacing: 8,
                       children: [
                         _legendItem(MyColor.color16A34A, 'PRESENT'),
@@ -569,20 +571,19 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                                   const Text(
                                     'Attendance Details',
                                     style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: MyColor.color021034,
                                     ),
                                   ),
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 12,
-                                      vertical: 8,
+                                      vertical: 5,
                                     ),
                                     decoration: BoxDecoration(
                                       color: rec.status == 'Present'
-                                          ? MyColor.color16A34A.withOpacity(
-                                              0.12,
-                                            )
+                                          ? MyColor.colorDCFCE7
                                           : const Color(0xFFF1F5F9),
                                       borderRadius: BorderRadius.circular(22),
                                     ),
@@ -630,15 +631,16 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                                   const Text(
                                     'Total Duration',
                                     style: TextStyle(
+                                      color: MyColor.color64748B,
+                                      fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: Color(0xFF374151),
                                     ),
                                   ),
                                   Text(
                                     rec.duration,
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w800,
+                                      fontWeight: FontWeight.w700,
                                       color: MyColor.color2750C4,
                                     ),
                                   ),
@@ -663,17 +665,21 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 12,
-                                      vertical: 8,
+                                      vertical: 5,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFF1F5F9),
+                                      color: MyColor.colorF5F9FF,
                                       borderRadius: BorderRadius.circular(18),
+                                      border: Border.all(
+                                        color: MyColor.colorF1F5F9,
+                                      ),
                                     ),
                                     child: const Text(
                                       'Verified',
                                       style: TextStyle(
                                         color: Color(0xFF0F1724),
                                         fontWeight: FontWeight.w700,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ),
@@ -699,8 +705,22 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: const TextStyle(color: Color(0xFF6B7280))),
-        Text(value, style: const TextStyle(fontWeight: FontWeight.w700)),
+        Text(
+          label,
+          style: TextStyle(
+            color: MyColor.color64748B,
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+          ),
+        ),
+        Text(
+          value,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            color: MyColor.color0F172A,
+          ),
+        ),
       ],
     );
   }

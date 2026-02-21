@@ -860,29 +860,34 @@ class _MyAttendanceState extends State<MyAttendance> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Close icon row
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 14, 12, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                    hSized10,
+                    // Top area: centered SVG with close icon on the right
+                    SizedBox(
+                      height: 80,
+                      child: Stack(
                         children: [
-                          IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            icon: const Icon(Icons.close, size: 20),
-                            onPressed: () => Navigator.of(ctx).pop(),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 8),
+                              child: SvgPicture.asset(
+                                AssetsImages.rightpop,
+                                width: 60,
+                                height: 60,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 8,
+                            top: 6,
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              icon: const Icon(Icons.close, size: 20),
+                              onPressed: () => Navigator.of(ctx).pop(),
+                            ),
                           ),
                         ],
-                      ),
-                    ),
-
-                    // Top icon (use provided SVG)
-                    Container(
-                      margin: const EdgeInsets.only(top: 8),
-                      child: SvgPicture.asset(
-                        AssetsImages.rightpop,
-                        width: 60,
-                        height: 60,
                       ),
                     ),
 
@@ -902,107 +907,40 @@ class _MyAttendanceState extends State<MyAttendance> {
 
                     const SizedBox(height: 14),
 
-                    // Info card
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Container(
-                        decoration: BoxDecoration(
-                          color: MyColor.colorF4F4F5,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.all(14),
+                        decoration: _innerBoxDecoration(),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Date',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                Text(
-                                  dateString,
-                                  style: const TextStyle(color: Colors.black87),
-                                ),
-                              ],
+                            _infoRow('Date', dateString),
+                            const Divider(
+                              color: MyColor.colorD7E3FC,
+                              height: 1,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Clock In',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                Text(
-                                  clockIn,
-                                  style: const TextStyle(color: Colors.black87),
-                                ),
-                              ],
+                            _infoRow('Clock In', clockIn),
+                            const Divider(
+                              color: MyColor.colorD7E3FC,
+                              height: 1,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Clock Out',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                Text(
-                                  clockOut,
-                                  style: const TextStyle(color: Colors.black87),
-                                ),
-                              ],
+                            _infoRow('Clock Out', clockOut),
+                            const Divider(
+                              color: MyColor.colorD7E3FC,
+                              height: 1,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Total Duration',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                Text(
-                                  totalDuration,
-                                  style: TextStyle(
-                                    color: MyColor.color2750C4,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Status',
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 6,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: MyColor.colorF4F4F5,
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: const Text(
-                                    'Verified',
-                                    style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            _infoRow(
+                              'Total Duration',
+                              totalDuration,
+                              valueStyle: TextStyle(
+                                color: MyColor.color2750C4,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 18),
 
                     // Primary action
@@ -1036,7 +974,11 @@ class _MyAttendanceState extends State<MyAttendance> {
                           ),
                           label: const Text(
                             'View Monthly Attendance',
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: MyColor.white,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
@@ -1124,7 +1066,7 @@ class _MyAttendanceState extends State<MyAttendance> {
   Widget _summaryBox(String title, String count, Color bg, Color textColor) {
     return Expanded(
       child: Container(
-        height: 100,
+        height: 85,
         margin: const EdgeInsets.symmetric(horizontal: 6),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
@@ -1151,8 +1093,8 @@ class _MyAttendanceState extends State<MyAttendance> {
             Text(
               count,
               style: TextStyle(
-                fontSize: 34,
-                fontWeight: FontWeight.w800,
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
                 color: textColor,
                 fontFamily: 'Roboto',
               ),

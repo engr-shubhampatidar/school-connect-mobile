@@ -19,10 +19,10 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
 
   final List<Widget> _screens = [
     const TeacherHomePage(),
+    const MyAttendance(),
     NewLeaveManagementScreen(),
     // MySubjectScreen(),
     const MyClassScreen(),
-    const MyAttendance(),
   ];
 
   @override
@@ -57,6 +57,10 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
             //   label: "My Subject",
             // ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.assignment_outlined),
+              label: "My Attendance",
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.event_note_outlined), // Better icon for Leave
               activeIcon: Icon(Icons.event_note),
               label: "Leave",
@@ -65,10 +69,6 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
             BottomNavigationBarItem(
               icon: Icon(Icons.people_outline),
               label: "My Class",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_outlined),
-              label: "My Attendance",
             ),
           ],
         ),
