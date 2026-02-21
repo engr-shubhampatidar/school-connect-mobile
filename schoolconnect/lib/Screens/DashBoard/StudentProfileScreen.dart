@@ -133,6 +133,11 @@ class MyProfileScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
+              /// Academic Info
+              _academicInfoCard(),
+
+              const SizedBox(height: 16),
+
               /// Attendance Summary
               _attendanceSummaryCard(context),
 
@@ -429,21 +434,70 @@ class MyProfileScreen extends StatelessWidget {
     );
   }
 
+  Widget _academicInfoCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: _cardDecoration(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Academic Info",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Roboto',
+            ),
+          ),
+          const SizedBox(height: 16),
+          _academicRow("Academic Number", "ADM2024042"),
+          const Divider(height: 28, color: MyColor.colorD7E3FC),
+          _academicRow("Class & Section", "10"),
+          const Divider(height: 28, color: MyColor.colorD7E3FC),
+          _academicRow("Stream", "Science"),
+          const Divider(height: 28, color: MyColor.colorD7E3FC),
+          _academicRow("Medium", "English"),
+          const Divider(height: 28, color: MyColor.colorD7E3FC),
+          _academicRow("Admission Date", "10 April 2025"),
+        ],
+      ),
+    );
+  }
+
+  Widget _academicRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: MyColor.color021034,
+              ),
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: MyColor.color021034,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// ================= DOCUMENT CARD =================
 
   Widget _attendanceSummaryCard(BuildContext context) {
     const double attendancePercent = 94.5;
     const int presentDays = 85;
     const int absentDays = 5;
-    final bool isCompact = MediaQuery.of(context).size.width < 360;
-
-    final double titleFontSize = isCompact ? 18 : 20;
-    final double percentFontSize = isCompact ? 44 : 56;
-    final double subtitleFontSize = isCompact ? 14 : 18;
-    final double legendFontSize = isCompact ? 15 : 17;
-    final double valueFontSize = isCompact ? 15 : 17;
-    final double buttonFontSize = isCompact ? 16 : 18;
-    final double progressHeight = isCompact ? 14 : 18;
 
     return Container(
       padding: const EdgeInsets.all(0),
@@ -459,15 +513,15 @@ class MyProfileScreen extends StatelessWidget {
                   child: Text(
                     'Attendance Summary',
                     style: TextStyle(
-                      fontSize: titleFontSize,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
                       color: MyColor.color021034,
                     ),
                   ),
                 ),
                 Icon(
                   Icons.calendar_today_outlined,
-                  size: isCompact ? 20 : 24,
+                  size: 24,
                   color: const Color(0xFF8B8B8B),
                 ),
               ],
@@ -485,7 +539,7 @@ class MyProfileScreen extends StatelessWidget {
                     Text(
                       '94.5%',
                       style: TextStyle(
-                        fontSize: percentFontSize,
+                        fontSize: 30,
                         height: 0.95,
                         fontWeight: FontWeight.w700,
                         color: MyColor.color021034,
@@ -494,13 +548,13 @@ class MyProfileScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: 0),
                         child: Text(
                           'This Month Attendance',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: subtitleFontSize,
+                            fontSize: 12,
                             fontWeight: FontWeight.w500,
                             height: 1.2,
                             color: const Color(0xFF16A34A),
@@ -514,7 +568,7 @@ class MyProfileScreen extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(999),
                   child: LinearProgressIndicator(
-                    minHeight: progressHeight,
+                    minHeight: 18,
                     value: attendancePercent / 100,
                     backgroundColor: const Color(0xFFC8D8F4),
                     valueColor: const AlwaysStoppedAnimation<Color>(
@@ -527,22 +581,24 @@ class MyProfileScreen extends StatelessWidget {
                   dotColor: const Color(0xFF16A34A),
                   label: 'Precent',
                   value: '$presentDays Days',
-                  labelFontSize: legendFontSize,
-                  valueFontSize: valueFontSize,
+                  labelFontSize: 12,
+                  valueFontSize: 12,
                 ),
                 const SizedBox(height: 12),
                 _attendanceLegendItem(
                   dotColor: const Color(0xFFE11D48),
                   label: 'Absent',
                   value: '0$absentDays Days',
-                  labelFontSize: legendFontSize,
-                  valueFontSize: valueFontSize,
+                  labelFontSize: 12,
+                  valueFontSize: 12,
                 ),
-                const SizedBox(height: 18),
+                hSized30,
                 SizedBox(
                   width: double.infinity,
+                  height: 37,
                   child: OutlinedButton(
                     onPressed: () {},
+
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: MyColor.colorD7E3FC),
                       foregroundColor: MyColor.color021034,
@@ -551,7 +607,7 @@ class MyProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       textStyle: TextStyle(
-                        fontSize: buttonFontSize,
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -576,11 +632,11 @@ class MyProfileScreen extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 12,
-          height: 12,
+          width: 8,
+          height: 8,
           decoration: BoxDecoration(color: dotColor, shape: BoxShape.circle),
         ),
-        const SizedBox(width: 12),
+        wSized7,
         Text(
           label,
           style: TextStyle(
