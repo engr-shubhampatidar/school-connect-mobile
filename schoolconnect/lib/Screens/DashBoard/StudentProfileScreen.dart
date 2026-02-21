@@ -43,7 +43,7 @@ class MyProfileScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               /// Profile Header Card
-              _profileHeader(),
+              _profileHeader(context),
 
               const SizedBox(height: 16),
 
@@ -166,92 +166,183 @@ class MyProfileScreen extends StatelessWidget {
 
   /// ================= PROFILE HEADER =================
 
-  Widget _profileHeader() {
+  Widget _profileHeader(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: _cardDecoration(),
       child: Row(
         children: [
-          const CircleAvatar(
-            radius: 30,
-            backgroundColor: Color(0xFFE2E8F0),
-            child: Icon(Icons.person, size: 28),
-          ),
-          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Deepak Patidar",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: MyColor.color021034,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Wrap(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Student ID : ",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: MyColor.color737373,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    const CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color(0xFFE2E8F0),
+                      child: Icon(Icons.person, size: 28),
                     ),
-                    const Text(
-                      "ST-200-305",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: MyColor.color021034,
-                        fontWeight: FontWeight.w400,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Deepak Patidar",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: MyColor.color021034,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Wrap(
+                            children: [
+                              const Text(
+                                "Student ID : ",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: MyColor.color737373,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const Text(
+                                "ST-200-305",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: MyColor.color021034,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          hSized10,
+                          SizedBox(
+                            height: 30,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 4,
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(width: 6),
+                                    itemBuilder: (context, index) {
+                                      final items = [
+                                        _chip("Class 11-A"),
+                                        _chip(
+                                          "Science Stream",
+                                          bgColor: MyColor.colorDBEAFF,
+                                          textColor: MyColor.color2750C4,
+                                        ),
+                                        _chip(
+                                          "2025-26",
+                                          textColor: MyColor.color6930B3,
+                                          bgColor: MyColor.colorF4E8FF,
+                                        ),
+
+                                        _chip(
+                                          "Active",
+                                          textColor: MyColor.color16A34A,
+                                          bgColor: MyColor.colorDCFCE6,
+                                        ),
+                                        // _activeChip(),
+                                      ];
+                                      return items[index];
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 10),
-
-                SizedBox(
-                  height: 30,
-                  child: ListView.separated(
-                    padding: EdgeInsets.zero,
-
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 6),
-                    itemBuilder: (context, index) {
-                      final items = [
-                        _chip("Class 11-A"),
-                        _chip(
-                          "Science Stream",
-                          bgColor: MyColor.colorDBEAFF,
-                          textColor: MyColor.color2750C4,
-                        ),
-                        _chip(
-                          "2025-26",
-                          textColor: MyColor.color6930B3,
-                          bgColor: MyColor.colorF4E8FF,
-                        ),
-
-                        _chip(
-                          "Active",
-                          textColor: MyColor.color16A34A,
-                          bgColor: MyColor.colorDCFCE6,
-                        ),
-                        // _activeChip(),
-                      ];
-                      return items[index];
-                    },
-                  ),
+                hSized20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _primaryButton(
+                      AppStrings.edit,
+                      svgAsset: AssetsImages.plus,
+                      context: context,
+                    ),
+                    _primaryButton(
+                      AppStrings.attendanceHistory,
+                      svgAsset: AssetsImages.plus,
+                      context: context,
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _primaryButton(
+    String text, {
+    String? svgAsset,
+    VoidCallback? onPressed,
+    required BuildContext context,
+  }) {
+    return SizedBox(
+      height: 37,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          side: BorderSide(color: MyColor.colorD7E3FC, width: 1.0),
+          foregroundColor: MyColor.color021034,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        onPressed:
+            onPressed ??
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const TakeAttendanceScreen(),
+                ),
+              );
+            },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (svgAsset != null) ...[
+              SvgPicture.asset(
+                svgAsset,
+                width: 15,
+                height: 12,
+                color: MyColor.color021034,
+              ),
+              const SizedBox(width: 8),
+            ],
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: MyColor.color021034,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

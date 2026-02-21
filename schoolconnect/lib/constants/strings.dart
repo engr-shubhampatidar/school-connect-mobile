@@ -75,6 +75,7 @@ class AppStrings {
 
   static const String cancel = 'Cancel';
   static const String editSave = 'Edit & Save Changes';
+  static const String edit = 'Edit';
   static const String saveAttendance = 'Save Attendance';
   static const String editableNote = 'Attendance can be edited by today only';
 
