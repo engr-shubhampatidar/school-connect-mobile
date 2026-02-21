@@ -62,7 +62,6 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
       'November',
       'December',
     ];
-
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -154,55 +153,64 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
   }) {
     return SizedBox(
       width: 64,
-      height: 98,
+      height: 90,
       child: InkWell(
         onTap: onTap,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: 64,
-              height: 57,
+              height: 58,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: selected ? MyColor.color2750C4 : MyColor.colorF4F4F5,
-                  width: selected ? 2.2 : 1.0,
+                  color: selected
+                      ? MyColor.color2750C4
+                      : const Color(0xFFF1F5F9),
+                  width: selected ? 3.0 : 1.0,
                 ),
+                boxShadow: selected
+                    ? [
+                        BoxShadow(
+                          color: MyColor.color2750C4.withOpacity(0.06),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ]
+                    : null,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Text(
+                    '$day',
+                    style: TextStyle(
+                      fontSize: selected ? 16 : 14,
+                      fontWeight: selected
+                          ? FontWeight.w800
+                          : (isOther ? FontWeight.w400 : FontWeight.w600),
+                      color: isOther
+                          ? const Color(0xFF9CA3AF)
+                          : (selected
+                                ? MyColor.color2750C4
+                                : const Color(0xFF111827)),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
                   Center(
-                    child: Text(
-                      '$day',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: selected
-                            ? FontWeight.w700
-                            : (isOther ? FontWeight.w400 : FontWeight.w600),
-                        color: isOther
-                            ? const Color(0xFF9CA3AF)
-                            : (selected
-                                  ? MyColor.color2750C4
-                                  : const Color(0xFF111827)),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: dotColor ?? Colors.transparent,
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),
-                  hSized10,
-                  if (!isOther)
-                    Center(
-                      child: Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: dotColor ?? Colors.transparent,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
                 ],
               ),
             ),
