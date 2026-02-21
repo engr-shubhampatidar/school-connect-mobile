@@ -168,7 +168,7 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: selected
-                      ? MyColor.color2750C4
+                      ? MyColor.colorDBEAFF
                       : const Color(0xFFF1F5F9),
                   width: selected ? 3.0 : 1.0,
                 ),
