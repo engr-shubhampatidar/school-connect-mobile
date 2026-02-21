@@ -22,6 +22,7 @@ class StudentReviewRequest extends StatelessWidget {
             Icons.arrow_back_ios_new_rounded,
             size: 20,
             color: MyColor.color021034,
+            fontWeight: FontWeight.w600,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),

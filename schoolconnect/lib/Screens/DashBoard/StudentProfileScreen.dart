@@ -9,12 +9,14 @@ class MyProfileScreen extends StatelessWidget {
       backgroundColor: MyColor.colorEFF3FA,
       appBar: AppBar(
         backgroundColor: MyColor.colorEFF3FA,
+        surfaceTintColor: MyColor.colorEFF3FA,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new,
             size: 20,
             color: Colors.black,
+            fontWeight: FontWeight.w600,
           ),
           onPressed: () => Navigator.pop(context),
         ),

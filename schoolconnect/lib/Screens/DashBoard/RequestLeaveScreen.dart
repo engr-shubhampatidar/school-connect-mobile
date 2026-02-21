@@ -24,6 +24,7 @@ class RequestLeaveScreen extends StatelessWidget {
                   Icons.arrow_back_ios_new,
                   color: MyColor.color021034,
                   size: 20,
+                  fontWeight: FontWeight.w600,
                 ),
                 onPressed: () => Navigator.pop(context),
               ),

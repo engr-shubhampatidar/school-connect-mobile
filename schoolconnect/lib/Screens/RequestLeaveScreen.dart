@@ -38,6 +38,7 @@ class _RequestLeaveScreenState extends State<RequestLeaveScreen> {
             Icons.arrow_back_ios_new,
             size: 20,
             color: MyColor.color021034,
+            fontWeight: FontWeight.w600,
           ),
           onPressed: () => Navigator.pop(context),
         ),
