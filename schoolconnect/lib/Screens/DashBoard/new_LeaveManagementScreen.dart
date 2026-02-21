@@ -75,14 +75,22 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                               context.watch<LeaveProvider>().selectedIndex == 0
                               ? BoxDecoration(
                                   color: MyColor.colorEEF4FF,
-                                  borderRadius: BorderRadius.circular(14),
+                                  borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
                                     color: MyColor.colorD7E3FC,
                                     width: 1.6,
                                   ),
                                 )
-                              : null,
+                              : BoxDecoration(
+                                  color: MyColor.transparent,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: MyColor.transparent,
+                                    width: 1.6,
+                                  ),
+                                ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.calendar_today,
@@ -98,8 +106,10 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                               const SizedBox(width: 10),
                               Text(
                                 AppStrings.myLeaves,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  // fontSize: 16,
                                   fontWeight:
                                       context
                                               .watch<LeaveProvider>()
@@ -121,31 +131,42 @@ class _NewLeaveManagementScreenState extends State<NewLeaveManagementScreen> {
                             context.read<LeaveProvider>().selectIndex(1),
                         child: Container(
                           margin: const EdgeInsets.all(6),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
                           alignment: Alignment.centerLeft,
                           decoration:
                               context.watch<LeaveProvider>().selectedIndex == 1
                               ? BoxDecoration(
                                   color: MyColor.colorEEF4FF,
-                                  borderRadius: BorderRadius.circular(14),
+                                  borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
                                     color: MyColor.colorD7E3FC,
                                     width: 1.6,
                                   ),
                                 )
-                              : null,
-                          child: Text(
-                            AppStrings.studentRequests,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight:
-                                  context
-                                          .watch<LeaveProvider>()
-                                          .selectedIndex ==
-                                      1
-                                  ? FontWeight.w700
-                                  : FontWeight.w600,
-                              color: MyColor.color021034,
+                              : BoxDecoration(
+                                  color: MyColor.transparent,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: MyColor.transparent,
+                                    width: 1.6,
+                                  ),
+                                ),
+                          child: Center(
+                            child: Text(
+                              AppStrings.studentRequests,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                // fontSize: 14,
+                                fontWeight:
+                                    context
+                                            .watch<LeaveProvider>()
+                                            .selectedIndex ==
+                                        1
+                                    ? FontWeight.w700
+                                    : FontWeight.w600,
+                                color: MyColor.color021034,
+                              ),
                             ),
                           ),
                         ),

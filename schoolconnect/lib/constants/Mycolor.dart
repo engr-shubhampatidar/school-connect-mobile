@@ -94,6 +94,7 @@ class MyColor {
   static const colorDCE7F9 = Color(0xFFDCE7F9);
   static const colorCBD5E1 = Color(0xFFCBD5E1);
   static const color1E293B = Color(0xFF1E293B);
+  static const color020617 = Color(0xFF020617);
   // A subtle, desaturated Google Maps style to match the app's muted UI
   static const String googleMapStyle = r'''
 [

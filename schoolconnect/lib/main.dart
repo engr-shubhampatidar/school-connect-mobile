@@ -30,18 +30,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: const TeacherBottomNav(),
       debugShowCheckedModeBanner: false,
       title: 'School Connect',
-      // Force a fixed text scale so system font scaling doesn't
-      // affect the app's text styles. Uses `textScaler` (non-deprecated).
-      builder: (BuildContext context, Widget? child) {
+
+      builder: (context, child) {
         final mediaQuery = MediaQuery.of(context);
-        final windowScale = WidgetsBinding.instance.window.textScaleFactor;
-        debugPrint(
-          'MediaQuery before override: ${mediaQuery.textScaleFactor}, window: $windowScale',
+        final newMedia = mediaQuery.copyWith(
+          textScaler: const TextScaler.linear(1.0),
         );
-        final newMedia = mediaQuery.copyWith(textScaleFactor: 1.0);
-        debugPrint('MediaQuery after override: ${newMedia.textScaleFactor}');
         return MediaQuery(
           data: newMedia,
           child: child ?? const SizedBox.shrink(),
@@ -51,6 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         scaffoldBackgroundColor: const Color(0xFFF5F9FF),
         cardColor: Colors.white,
+        // useMaterial3: true,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
@@ -59,6 +57,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
       ),
+
       initialRoute: initialRoute,
       routes: {
         '/login': (_) => const LoginScreen(),

@@ -27,12 +27,13 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
 
   @override
   Widget build(BuildContext context) {
+    print("Text Scale Value: ${MediaQuery.of(context).textScaler.scale(1)}");
     return Scaffold(
       backgroundColor: MyColor.white,
       body: _screens[_currentIndex],
 
       bottomNavigationBar: SizedBox(
-        height: 100,
+        height: 70,
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {
@@ -41,11 +42,12 @@ class _TeacherBottomNavState extends State<TeacherBottomNav> {
             });
           },
           type: BottomNavigationBarType.fixed,
-          iconSize: 30,
-          selectedFontSize: 14,
+          iconSize: 25,
+          selectedFontSize: 12,
           unselectedFontSize: 12,
+
           selectedItemColor: const Color(0xFF0A1A3A),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: MyColor.color737373,
           backgroundColor: MyColor.white,
           showUnselectedLabels: true,
           items: const [

@@ -16,6 +16,9 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    print("Screen Width: $screenWidth");
     return ChangeNotifierProvider(
       create: (_) => TeacherHomeProvider(),
       child: Consumer<TeacherHomeProvider>(
@@ -467,7 +470,9 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
     String? svgAsset,
   }) {
     return Container(
-      width: 220,
+      width:
+          MediaQuery.of(context).size.width *
+          0.44, // Fixed width for consistent card size
       padding: const EdgeInsets.all(14),
       decoration: _cardDecoration(),
       child: Column(

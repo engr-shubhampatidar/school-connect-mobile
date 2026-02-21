@@ -155,11 +155,13 @@ class _MyAttendanceState extends State<MyAttendance> {
                                       Text(
                                         'You can clock in only within school radius',
                                         style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12,
+                                          color: MyColor.color64748B,
+                                          fontSize: 14,
                                           fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
+                                      hSized10,
                                     ],
                                   ),
                                 ),
@@ -182,24 +184,28 @@ class _MyAttendanceState extends State<MyAttendance> {
                                           const Text(
                                             'School Campus',
                                             style: TextStyle(
-                                              fontSize: 13,
+                                              fontSize: 15,
                                               fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w500,
+                                              color: MyColor.color64748B,
                                             ),
                                           ),
                                           Row(
                                             children: const [
                                               Icon(
                                                 Icons.location_on_outlined,
-                                                color: Colors.grey,
-                                                size: 16,
+                                                color: MyColor.color021034,
+
+                                                size: 13,
                                               ),
-                                              SizedBox(width: 6),
+                                              SizedBox(width: 2),
                                               Text(
                                                 'Within Zone (0m)',
                                                 style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 13,
+                                                  color: MyColor.color021034,
+                                                  fontSize: 14,
                                                   fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                               ),
                                             ],
@@ -352,9 +358,10 @@ class _MyAttendanceState extends State<MyAttendance> {
                                           const Text(
                                             'Status',
                                             style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 13,
+                                              color: MyColor.color020617,
+                                              fontSize: 14,
                                               fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                           Container(
@@ -370,9 +377,10 @@ class _MyAttendanceState extends State<MyAttendance> {
                                             child: const Text(
                                               'Not Checked In',
                                               style: TextStyle(
-                                                fontSize: 13,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w600,
                                                 fontFamily: 'Roboto',
+                                                color: MyColor.color021034,
                                               ),
                                             ),
                                           ),
@@ -391,6 +399,8 @@ class _MyAttendanceState extends State<MyAttendance> {
                                       const SizedBox(height: 14),
 
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: const [
                                           Icon(
                                             Icons.error_outline,
@@ -398,13 +408,13 @@ class _MyAttendanceState extends State<MyAttendance> {
                                             size: 18,
                                           ),
                                           SizedBox(width: 8),
-                                          Expanded(
-                                            child: Text(
-                                              'Pls make sure you are in School Zone',
-                                              style: TextStyle(
-                                                color: MyColor.red,
-                                                fontFamily: 'Roboto',
-                                              ),
+                                          Text(
+                                            'Please make sure you are in School Zone',
+                                            style: TextStyle(
+                                              color: MyColor.red,
+                                              fontFamily: 'Roboto',
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                         ],
@@ -492,7 +502,10 @@ class _MyAttendanceState extends State<MyAttendance> {
                                     Text(
                                       'Monthly Summary',
                                       style: AppTextStyles.heading.copyWith(
-                                        fontSize: 34,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'Roboto',
+                                        color: MyColor.color021034,
                                       ),
                                     ),
                                     const SizedBox(height: 8),
@@ -502,13 +515,18 @@ class _MyAttendanceState extends State<MyAttendance> {
                                           TextSpan(
                                             text: 'View ',
                                             style: AppTextStyles.subtitle
-                                                .copyWith(fontSize: 16),
+                                                .copyWith(
+                                                  fontSize: 14,
+                                                  color: MyColor.color64748B,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: 'Roboto',
+                                                ),
                                           ),
                                           TextSpan(
                                             text: 'oct ',
                                             style: AppTextStyles.subtitle
                                                 .copyWith(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   color: MyColor.color16A34A,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -517,15 +535,20 @@ class _MyAttendanceState extends State<MyAttendance> {
                                             text: '2025',
                                             style: AppTextStyles.subtitle
                                                 .copyWith(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   color: MyColor.color16A34A,
-                                                  fontWeight: FontWeight.w800,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           TextSpan(
                                             text: ' attendance Summary',
                                             style: AppTextStyles.subtitle
-                                                .copyWith(fontSize: 16),
+                                                .copyWith(
+                                                  fontSize: 14,
+                                                  color: MyColor.color64748B,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: 'Roboto',
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -540,20 +563,20 @@ class _MyAttendanceState extends State<MyAttendance> {
                                     _summaryBox(
                                       'PRESENT',
                                       '20',
-                                      MyColor.colorDCFCE6,
-                                      MyColor.color16A34A,
+                                      MyColor.colorEEF4FF,
+                                      MyColor.black,
                                     ),
                                     _summaryBox(
                                       'ABSENT',
                                       '02',
-                                      MyColor.redF5F4F4,
-                                      MyColor.red_new,
+                                      MyColor.colorEEF4FF,
+                                      MyColor.black,
                                     ),
                                     _summaryBox(
                                       'LEAVES',
                                       '01',
-                                      MyColor.colorF4E8FF,
-                                      MyColor.Colore30b5c,
+                                      MyColor.colorEEF4FF,
+                                      MyColor.black,
                                     ),
                                   ],
                                 ),
@@ -658,20 +681,17 @@ class _MyAttendanceState extends State<MyAttendance> {
                   children: [
                     // Title row with close (centered title to match summary dialog)
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 14, 12, 6),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 12, 6),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: Center(
-                              child: Text(
-                                'Clock Out?',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.black87,
-                                ),
-                              ),
+                          Text(
+                            'Clock Out?',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.black87,
                             ),
                           ),
                           IconButton(
@@ -768,7 +788,10 @@ class _MyAttendanceState extends State<MyAttendance> {
                           ),
                           label: const Text(
                             'Confirm Clock Out',
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: MyColor.white,
+                            ),
                           ),
                         ),
                       ),
@@ -1066,9 +1089,10 @@ class _MyAttendanceState extends State<MyAttendance> {
         Text(
           label,
           style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 13,
+            color: MyColor.color64748B,
+            fontSize: 15,
             fontFamily: 'Roboto',
+            fontWeight: FontWeight.w500,
           ),
         ),
         Text(value, style: const TextStyle(fontSize: 14, fontFamily: 'Roboto')),
@@ -1102,15 +1126,16 @@ class _MyAttendanceState extends State<MyAttendance> {
       child: Container(
         height: 100,
         margin: const EdgeInsets.symmetric(horizontal: 6),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: bg,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: textColor.withOpacity(0.08)),
+
+          border: Border.all(color: MyColor.colorD7E3FC),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               title,
